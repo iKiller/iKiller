@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Wind7批处理设置IP（便于多IP切换）</title>
+        <link rel="stylesheet" href="theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">jiangtao </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/wind7pi-chu-li-she-zhi-ipbian-yu-duo-ipqie-huan.html" rel="bookmark"
+           title="Permalink to Wind7批处理设置IP（便于多IP切换）">Wind7批处理设置IP（便于多IP切换）</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-05-02T18:22:26.009204">
+                周五 02 五月 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="/author/qingchen.html">qingchen</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>. </p>
+
+</footer><!-- /.post-info -->      <hr />
+<p>说明：在x.x.x.x处填上自己的IP地址。保存成“.bat”文件，以管理员身份运行即可。
+代码如下：</p>
+<div class="highlight"><pre><span class="err">@</span><span class="n">echo</span> <span class="n">off</span>
+<span class="o">:</span><span class="n">main</span>
+<span class="n">cls</span>
+<span class="n">echo</span> <span class="err">请按提示操作</span><span class="p">...</span>
+<span class="n">echo</span><span class="p">.</span>
+<span class="n">echo</span> <span class="mi">1</span> <span class="n">STI</span><span class="o">-</span><span class="n">HUST</span>
+<span class="n">echo</span> <span class="mi">2</span> <span class="n">Dian</span><span class="o">-</span><span class="n">HUST</span><span class="o">-</span><span class="mi">711</span>
+<span class="n">echo</span> <span class="mi">3</span> <span class="n">DHCP</span>
+<span class="n">echo</span> <span class="mi">4</span> <span class="n">Exit</span>
+<span class="n">echo</span><span class="p">.</span>
+<span class="n">set</span> <span class="o">/</span><span class="n">p</span> <span class="n">choice</span><span class="o">=</span> <span class="n">Input</span> <span class="n">a</span> <span class="n">number</span><span class="o">:</span>
+<span class="n">echo</span><span class="p">.</span>
+<span class="k">if</span> <span class="s">&quot;%choice%&quot;</span><span class="o">==</span><span class="s">&quot;1&quot;</span> <span class="k">goto</span> <span class="n">ip_STI</span>
+<span class="k">if</span> <span class="s">&quot;%choice%&quot;</span><span class="o">==</span><span class="s">&quot;2&quot;</span> <span class="k">goto</span> <span class="n">ip_Dian711</span>
+<span class="k">if</span> <span class="s">&quot;%choice%&quot;</span><span class="o">==</span><span class="s">&quot;3&quot;</span> <span class="k">goto</span> <span class="n">ip_DHCP</span>
+<span class="k">if</span> <span class="s">&quot;%choice%&quot;</span><span class="o">==</span><span class="s">&quot;4&quot;</span> <span class="k">goto</span> <span class="n">ip_Exit</span>
+<span class="k">goto</span> <span class="n">main</span>
+<span class="o">:</span><span class="n">ip_STI</span>
+<span class="n">echo</span> <span class="n">IP</span><span class="err">自动设置中</span><span class="p">...</span>
+<span class="n">echo</span><span class="p">.</span>
+<span class="n">echo</span> <span class="err">更新</span><span class="n">IP</span><span class="err">及子网掩码</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">set</span> <span class="n">address</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">source</span><span class="o">=</span><span class="k">static</span> <span class="n">addr</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="n">mask</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="n">gateway</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="n">gwmetric</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">echo</span> <span class="err">更新</span><span class="n">DNS</span><span class="err">服务器</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">set</span> <span class="n">dns</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">source</span><span class="o">=</span><span class="k">static</span> <span class="n">addr</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="k">register</span><span class="o">=</span><span class="n">PRIMARY</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">add</span> <span class="n">dns</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">addr</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span>
+<span class="n">echo</span> <span class="err">设置完成</span>
+<span class="n">pause</span>
+<span class="n">exit</span>
+<span class="k">if</span> <span class="n">errorlevel</span> <span class="mi">2</span> <span class="k">goto</span> <span class="n">main</span>
+<span class="k">if</span> <span class="n">errorlevel</span> <span class="mi">1</span> <span class="k">goto</span> <span class="n">end</span>
+
+<span class="o">:</span><span class="n">ip_Dian711</span>
+<span class="n">echo</span> <span class="n">IP</span><span class="err">自动设置中</span><span class="p">...</span>
+<span class="n">echo</span><span class="p">.</span>
+<span class="n">echo</span> <span class="err">更新</span><span class="n">IP</span><span class="err">及子网掩码</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">set</span> <span class="n">address</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">source</span><span class="o">=</span><span class="k">static</span> <span class="n">addr</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="n">mask</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="n">gateway</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="n">gwmetric</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">echo</span> <span class="err">更新</span><span class="n">DNS</span><span class="err">服务器</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">set</span> <span class="n">dns</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">source</span><span class="o">=</span><span class="k">static</span> <span class="n">addr</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span> <span class="k">register</span><span class="o">=</span><span class="n">PRIMARY</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">add</span> <span class="n">dns</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">addr</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span>
+<span class="n">echo</span> <span class="err">设置完成</span>
+<span class="n">pause</span>
+<span class="n">exit</span>
+<span class="k">if</span> <span class="n">errorlevel</span> <span class="mi">2</span> <span class="k">goto</span> <span class="n">main</span>
+<span class="k">if</span> <span class="n">errorlevel</span> <span class="mi">1</span> <span class="k">goto</span> <span class="n">end</span>
+
+<span class="o">:</span><span class="n">ip_DHCP</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">set</span> <span class="n">address</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">source</span><span class="o">=</span><span class="n">dhcp</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">set</span> <span class="n">dns</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">source</span><span class="o">=</span><span class="n">dhcp</span>
+<span class="n">netsh</span> <span class="n">interface</span> <span class="n">ip</span> <span class="n">set</span> <span class="n">wins</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;本地连接&quot;</span> <span class="n">source</span><span class="o">=</span><span class="n">dhcp</span>
+<span class="n">echo</span> <span class="err">设置完成</span>
+<span class="n">pause</span>
+<span class="n">exit</span>
+<span class="k">if</span> <span class="n">errorlevel</span> <span class="mi">2</span> <span class="k">goto</span> <span class="n">main</span>
+<span class="k">if</span> <span class="n">errorlevel</span> <span class="mi">1</span> <span class="k">goto</span> <span class="n">end</span>
+
+<span class="o">:</span><span class="n">ip_Exit</span>
+<span class="n">exit</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="http://weibo.com/u/2148641134/">微博</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
