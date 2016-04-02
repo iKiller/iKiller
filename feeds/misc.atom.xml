@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jiangtao</title><link href="jiangtao.me/" rel="alternate"></link><link href="jiangtao.me/feeds/misc.atom.xml" rel="self"></link><id>jiangtao.me/</id><updated>2016-03-21T19:34:00+08:00</updated><entry><title>JetBrains Makes its Products Free for Students</title><link href="jiangtao.me/jetbrains-makes-its-products-free-for-students.html" rel="alternate"></link><updated>2016-03-21T19:34:00+08:00</updated><author><name>jiangtao</name></author><id>tag:,2016-03-21:jiangtao.me/jetbrains-makes-its-products-free-for-students.html</id><summary type="html">&lt;p&gt;Are you learning Java, PHP, Ruby, Python, JavaScript, Objective-C or .NET technologies?&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jiangtao</title><link href="https://jiangtao.me/" rel="alternate"></link><link href="https://jiangtao.me/feeds/misc.atom.xml" rel="self"></link><id>https://jiangtao.me/</id><updated>2016-03-21T19:34:00+08:00</updated><entry><title>JetBrains Makes its Products Free for Students</title><link href="https://jiangtao.me/jetbrains-makes-its-products-free-for-students.html" rel="alternate"></link><updated>2016-03-21T19:34:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-03-21:jetbrains-makes-its-products-free-for-students.html</id><summary type="html">&lt;p&gt;Are you learning Java, PHP, Ruby, Python, JavaScript, Objective-C or .NET technologies?&lt;/p&gt;
 &lt;p&gt;Or maybe you just plan to?Do it right from the start, with award-winning professional developer tools from JetBrains. And the best part: it's free of charge.
 more infomation please visit:
-&lt;a href="https://www.jetbrains.com/student/" title="Free for students: Professional development tools from JetBrains"&gt;read more&lt;/a&gt;&lt;/p&gt;</summary><category term="ide"></category><category term="tools"></category></entry><entry><title>测试markdown</title><link href="jiangtao.me/ce-shi-markdown.html" rel="alternate"></link><updated>2016-03-21T18:16:00+08:00</updated><author><name>jiangtao</name></author><id>tag:,2016-03-21:jiangtao.me/ce-shi-markdown.html</id><summary type="html">&lt;h3&gt;关于我&lt;/h3&gt;
+&lt;a href="https://www.jetbrains.com/student/" title="Free for students: Professional development tools from JetBrains"&gt;read more&lt;/a&gt;&lt;/p&gt;</summary><category term="ide"></category><category term="tools"></category></entry><entry><title>测试markdown</title><link href="https://jiangtao.me/ce-shi-markdown.html" rel="alternate"></link><updated>2016-03-21T18:16:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-03-21:ce-shi-markdown.html</id><summary type="html">&lt;h3&gt;关于我&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;一个酷酷的男生&lt;/li&gt;
 &lt;li&gt;一个热爱运动的男生&lt;/li&gt;
@@ -10,11 +10,11 @@ more infomation please visit:
 &lt;li&gt;一个不太极客的程序员&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;联系我&lt;/h3&gt;
-&lt;p&gt;Email: taojiang0101@gmail.com&lt;/p&gt;</summary></entry><entry><title>The way to access Google in China</title><link href="jiangtao.me/the-way-to-access-google-in-china.html" rel="alternate"></link><updated>2014-09-11T00:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:,2014-09-11:jiangtao.me/the-way-to-access-google-in-china.html</id><summary type="html">&lt;h3&gt;alternative offer&lt;/h3&gt;
+&lt;p&gt;Email: taojiang0101@gmail.com&lt;/p&gt;</summary></entry><entry><title>The way to access Google in China</title><link href="https://jiangtao.me/the-way-to-access-google-in-china.html" rel="alternate"></link><updated>2014-09-11T00:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2014-09-11:the-way-to-access-google-in-china.html</id><summary type="html">&lt;h3&gt;alternative offer&lt;/h3&gt;
 &lt;p&gt;Google:
 &lt;a href="http://glgoo.com/"&gt;&lt;font color="blue"&gt;glgoo.com&lt;/font&gt;&lt;/a&gt; &lt;br&gt;
 Google scholar:
-&lt;a href="http://scholar.glgoo.com/"&gt;&lt;font color="blue"&gt;scholar.glgoo.com&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>Linux 安装 Telnet</title><link href="jiangtao.me/linux-an-zhuang-telnet.html" rel="alternate"></link><updated>2014-08-31T00:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:,2014-08-31:jiangtao.me/linux-an-zhuang-telnet.html</id><summary type="html">&lt;p&gt;linux默认是不安装telnet的，默认使用ssh服务。 
+&lt;a href="http://scholar.glgoo.com/"&gt;&lt;font color="blue"&gt;scholar.glgoo.com&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>Linux 安装 Telnet</title><link href="https://jiangtao.me/linux-an-zhuang-telnet.html" rel="alternate"></link><updated>2014-08-31T00:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2014-08-31:linux-an-zhuang-telnet.html</id><summary type="html">&lt;p&gt;linux默认是不安装telnet的，默认使用ssh服务。 
 首先，查看一下有没有安装telnet及相关的服务软件：&lt;/p&gt;
 &lt;h4&gt;第一步：&lt;/h4&gt;
 &lt;table&gt;
@@ -53,7 +53,7 @@ pts/1 &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;保存退出，重启xinetd服务。 
 &lt;pre&gt;&lt;code&gt;:service xinetd restart&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
-&lt;p&gt;尝试以root身份登陆。&lt;/p&gt;</summary></entry><entry><title>如何购买Digitalocean的 VPS 主机</title><link href="jiangtao.me/ru-he-gou-mai-digitaloceande-vps-zhu-ji.html" rel="alternate"></link><updated>2014-08-30T00:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:,2014-08-30:jiangtao.me/ru-he-gou-mai-digitaloceande-vps-zhu-ji.html</id><summary type="html">&lt;p&gt;开始就决定选择KVM完全虚拟机，准备搭建一个VPN爬墙，然后在上面建一些网站来积累技术。&lt;/p&gt;
+&lt;p&gt;尝试以root身份登陆。&lt;/p&gt;</summary></entry><entry><title>如何购买Digitalocean的 VPS 主机</title><link href="https://jiangtao.me/ru-he-gou-mai-digitaloceande-vps-zhu-ji.html" rel="alternate"></link><updated>2014-08-30T00:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2014-08-30:ru-he-gou-mai-digitaloceande-vps-zhu-ji.html</id><summary type="html">&lt;p&gt;开始就决定选择KVM完全虚拟机，准备搭建一个VPN爬墙，然后在上面建一些网站来积累技术。&lt;/p&gt;
 &lt;h4&gt;一、查论坛评论、测评：找出三个比较合适的（便宜、快、有优惠）&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对比  &lt;a href="https://www.digitalocean.com"&gt;&lt;font color="blue"&gt;digitalocean&lt;/font&gt;&lt;/a&gt;  &lt;a href="https://www.ramnode.com"&gt;&lt;font color="blue"&gt;ramnode&lt;/font&gt;&lt;/a&gt;  &lt;a href="http://www.buyvm.net"&gt;&lt;font color="blue"&gt;buyvm&lt;/font&gt;&lt;/a&gt;  的价格和配置: &lt;br /&gt;
@@ -77,7 +77,7 @@ digitalocean云主机是按小时计费的，会从你的账户里实时扣费�
 &lt;ul&gt;
 &lt;li&gt;购买链接，新用户注册即可获得10美元账户余额（等于免费使用两个月）.
 &lt;a href="https://www.digitalocean.com/?refcode=14b3eb194704" title="优惠链接"&gt;&lt;font color="blue"&gt;https://www.digitalocean.com/?refcode=14b3eb194704&lt;/font&gt;&lt;/a&gt; &lt;/li&gt;
-&lt;/ul&gt;</summary></entry><entry><title>Vim markdown-plugin setup with .vba document (windows 7)</title><link href="jiangtao.me/vim-markdown-plugin-setup-with-vba-document-windows-7.html" rel="alternate"></link><updated>2014-08-28T17:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:,2014-08-28:jiangtao.me/vim-markdown-plugin-setup-with-vba-document-windows-7.html</id><summary type="html">&lt;ol&gt;
+&lt;/ul&gt;</summary></entry><entry><title>Vim markdown-plugin setup with .vba document (windows 7)</title><link href="https://jiangtao.me/vim-markdown-plugin-setup-with-vba-document-windows-7.html" rel="alternate"></link><updated>2014-08-28T17:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2014-08-28:vim-markdown-plugin-setup-with-vba-document-windows-7.html</id><summary type="html">&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Download markdown-plugin from:
 &lt;a href="http://www.vim.org/scripts/script.php?script_id=2882" title="Download markdown-1.2.2.vba.gz from official website!"&gt;&lt;font color="blue"&gt;markdown-1.2.2.vba.gz&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
@@ -94,7 +94,7 @@ digitalocean云主机是按小时计费的，会从你的账户里实时扣费�
 &lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4&gt;&lt;font color="ff8000"&gt; Now, enjoy vim editor with Syntax highlighting of markdown.&lt;/font&gt;&lt;/h4&gt;</summary></entry><entry><title>Setup a blog with scriptogr.am and dropbox</title><link href="jiangtao.me/setup-a-blog-with-scriptogram-and-dropbox.html" rel="alternate"></link><updated>2014-08-26T02:01:00+08:00</updated><author><name>jiangtao</name></author><id>tag:,2014-08-26:jiangtao.me/setup-a-blog-with-scriptogram-and-dropbox.html</id><summary type="html">&lt;ol&gt;
+&lt;h4&gt;&lt;font color="ff8000"&gt; Now, enjoy vim editor with Syntax highlighting of markdown.&lt;/font&gt;&lt;/h4&gt;</summary></entry><entry><title>Setup a blog with scriptogr.am and dropbox</title><link href="https://jiangtao.me/setup-a-blog-with-scriptogram-and-dropbox.html" rel="alternate"></link><updated>2014-08-26T02:01:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2014-08-26:setup-a-blog-with-scriptogram-and-dropbox.html</id><summary type="html">&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;sign up a account at atscriptogr.am, then connect your account to your dropbox account. &lt;/p&gt;
 &lt;/li&gt;
@@ -104,7 +104,7 @@ digitalocean云主机是按小时计费的，会从你的账户里实时扣费�
 &lt;li&gt;
 &lt;p&gt;post your blog, enjoy it!&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</summary></entry><entry><title>About this site!</title><link href="jiangtao.me/about-this-site.html" rel="alternate"></link><updated>2014-05-02T20:05:00+08:00</updated><author><name>jiangtao</name></author><id>tag:,2014-05-02:jiangtao.me/about-this-site.html</id><summary type="html">&lt;h3&gt;This is a private Blog&lt;/h3&gt;
+&lt;/ol&gt;</summary></entry><entry><title>About this site!</title><link href="https://jiangtao.me/about-this-site.html" rel="alternate"></link><updated>2014-05-02T20:05:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2014-05-02:about-this-site.html</id><summary type="html">&lt;h3&gt;This is a private Blog&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;I will be back soon with my new Blog site.&lt;/li&gt;
 &lt;li&gt;I am an undergraduate student.&lt;/li&gt;
