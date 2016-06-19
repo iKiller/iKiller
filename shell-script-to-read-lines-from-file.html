@@ -5,9 +5,9 @@
       <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="/shell-script-to-evaluate-expression.html" />
+    <link rel="canonical" href="/shell-script-to-read-lines-from-file.html" />
 
-    <title>  jiangtao &mdash; shell script to evaluate expression
+    <title>  jiangtao &mdash; shell script to read lines from file
 </title>
 
 
@@ -22,8 +22,8 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="To evaluate expressions involving decimal places (floating points) "bc -l" is very useful. Shell script is as below: 1 2 3#!/bin/bash read expression printf "%.3f\n" $(echo "scale=10;$expression" | bc -l) Read it on hackerrank.com">
-  <meta name="tags" contents="shell, linux, unix, bash, bc, ">
+    <meta name="description" content="How would you print just the 10th line of a file with the shell script? Shell script is as below: 1 2 3 4 5 6 7 8 9 10#!/bin/bash k=0 while IFS='' read -r line || [[ -n "$line" ]] do ((k++)) if [ $k -eq 10 ] then echo "Text ...">
+  <meta name="tags" contents="shell, linux, unix, bash, ">
 </head>
 
 <body>
@@ -49,11 +49,11 @@
 </header> <!-- /.header -->  <div class="container">
   <div class="post full-post">
     <h1 class="post-title">
-      <a href="/shell-script-to-evaluate-expression.html" title="Permalink to shell script to evaluate expression">shell script to evaluate expression</a>
+      <a href="/shell-script-to-read-lines-from-file.html" title="Permalink to shell script to read lines from file">shell script to read lines from file</a>
     </h1>
     <ul class="list-inline">
       <li class="post-date">
-        <a class="text-muted" href="/shell-script-to-evaluate-expression.html" title="2016-06-19T11:50:00+08:00">日 19 六月 2016</a>
+        <a class="text-muted" href="/shell-script-to-read-lines-from-file.html" title="2016-06-20T00:17:00+08:00">一 20 六月 2016</a>
       </li>
       <li class="muted">&middot;</li>
       <li class="post-category">
@@ -61,22 +61,38 @@
       </li>
         <li class="muted">&middot;</li>
         <li>
-            <a href="/tag/shell.html">shell</a>,             <a href="/tag/linux.html">linux</a>,             <a href="/tag/unix.html">unix</a>,             <a href="/tag/bash.html">bash</a>,             <a href="/tag/bc.html">bc</a>        </li>
+            <a href="/tag/shell.html">shell</a>,             <a href="/tag/linux.html">linux</a>,             <a href="/tag/unix.html">unix</a>,             <a href="/tag/bash.html">bash</a>        </li>
     </ul>
     <div class="post-content">
-      <p>To evaluate expressions involving decimal places (floating points) "bc -l" is very useful.
-Shell script is as below:
-</p>
+      <p>How would you print just the 10th line of a file with the shell script?
+Shell script is as below:</p>
 
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="nb">read</span> expression
-<span class="nb">printf</span> <span class="s2">&quot;%.3f\n&quot;</span> <span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;scale=10;</span><span class="nv">$expression</span><span class="s2">&quot;</span> <span class="p">|</span> bc -l<span class="k">)</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nv">k</span><span class="o">=</span>0
+<span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="nb">read</span> -r line <span class="o">||</span> <span class="o">[[</span> -n <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span> <span class="o">]]</span>
+<span class="k">do</span>
+    <span class="o">((</span>k++<span class="o">))</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$k</span> -eq <span class="m">10</span> <span class="o">]</span>
+    <span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Text read from file: </span><span class="nv">$line</span><span class="s2">&quot;</span>
+    <span class="k">fi</span>
+<span class="k">done</span> &lt; <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
 </pre></div>
 </td></tr></table>
 
-<p><a href="https://www.hackerrank.com/challenges/bash-tutorials---arithmetic-operations">Read it on hackerrank.com</a></p>
+<p><span>
+If you read a exist file, replace the last line with 'done &lt; file.txt'(file.txt is the file you read lines from)
+</span>
+<a href="https://leetcode.com/problems/tenth-line/">Read it on leetcode.com</a></p>
     </div>
   </div>
   <hr class="separator">

@@ -51,6 +51,26 @@
         <div class="row">
           <div class="col-md-4">
             <p class="post-date">
+              <a class="text-muted" href="/shell-script-to-read-lines-from-file.html" title="2016-06-20T00:17:00+08:00">一 20 六月 2016</a>
+            </p>
+            <p class="post-category">
+              <a href="/category/misc.html">misc</a>
+            </p>
+          </div>
+          <div class="col-md-8">
+            <h2 class="post-title">
+              <a href="/shell-script-to-read-lines-from-file.html" title="Permalink to shell script to read lines from file">shell script to read lines from file</a>
+            </h2>
+            <div class="post-content">
+              How would you print just the 10th line of a file with the shell script? Shell script is as below: 1 2 3 4 5 6 7 8 9 10#!/bin/bash k=0 while IFS='' read -r line || [[ -n "$line" ]] do ((k++)) if [ $k -eq 10 ] then echo "Text read from file: $line" fi ...
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post mini-post">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="post-date">
               <a class="text-muted" href="/shell-script-to-evaluate-expression.html" title="2016-06-19T11:50:00+08:00">日 19 六月 2016</a>
             </p>
             <p class="post-category">
@@ -62,7 +82,7 @@
               <a href="/shell-script-to-evaluate-expression.html" title="Permalink to shell script to evaluate expression">shell script to evaluate expression</a>
             </h2>
             <div class="post-content">
-              To evaluate expressions involving decimal places (floating points) "bc -l" is very useful. 1 2 3#!/bin/bash read expression printf "%.3f\n" $(echo "scale=10;$expression" | bc -l) Read it on hackerrank.com
+              To evaluate expressions involving decimal places (floating points) "bc -l" is very useful. Shell script is as below: 1 2 3#!/bin/bash read expression printf "%.3f\n" $(echo "scale=10;$expression" | bc -l) Read it on hackerrank.com
             </div>
           </div>
         </div>
