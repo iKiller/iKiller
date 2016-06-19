@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="To evaluate expressions involving decimal places (floating points) "bc -l" is very useful. Your task is to evaluate the expression and display the output correct to decimal places. Shell script is as below: 1 2 3#!/bin/bash read expression printf "%.3f\n" $(echo "scale=10;$expression" | bc -l) +input ...">
+    <meta name="description" content="To evaluate expressions involving decimal places (floating points) "bc -l" is very useful. Your task is to evaluate the expression and display the output correct to decimal places. Shell script is as below: #!/bin/bash read expression printf "%.3f\n" $(echo "scale=10;$expression" | bc -l) input: 23 + 12*(34 ...">
   <meta name="tags" contents="shell, linux, unix, bash, bc, ">
 </head>
 
@@ -64,24 +64,25 @@
             <a href="/tag/shell.html">shell</a>,             <a href="/tag/linux.html">linux</a>,             <a href="/tag/unix.html">unix</a>,             <a href="/tag/bash.html">bash</a>,             <a href="/tag/bc.html">bc</a>        </li>
     </ul>
     <div class="post-content">
-      <p>To evaluate expressions involving decimal places (floating points) "bc -l" is very useful.
+      <p><a>To evaluate expressions involving decimal places (floating points) "bc -l" is very useful.
 Your task is to evaluate the expression and display the output correct to  decimal places.
 Shell script is as below:
-</p>
-
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+</a></p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="nb">read</span> expression
 <span class="nb">printf</span> <span class="s2">&quot;%.3f\n&quot;</span> <span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;scale=10;</span><span class="nv">$expression</span><span class="s2">&quot;</span> <span class="p">|</span> bc -l<span class="k">)</span>
 </pre></div>
-</td></tr></table>
+
 
 <blockquote>
-<p>+input:+
-23 + 12*(34 - 45) + 67/3</p>
-<p>+output:+
--86.667</p>
+<p><strong>input:</strong></p>
+<p>23 + 12*(34 - 45) + 67/3
+</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>output:</strong></p>
+<p>-86.667</p>
 </blockquote>
 <p><a href="https://www.hackerrank.com/challenges/bash-tutorials---arithmetic-operations">Read it on hackerrank.com</a></p>
     </div>
