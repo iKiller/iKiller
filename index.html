@@ -62,7 +62,7 @@
               <a href="/shell-script-to-read-lines-from-file.html" title="Permalink to shell script to read lines from file">shell script to read lines from file</a>
             </h2>
             <div class="post-content">
-              How would you print just the 10th line of a file with the shell script? Shell script is as below: 1 2 3 4 5 6 7 8 9 10#!/bin/bash k=0 while IFS='' read -r line || [[ -n "$line" ]] do ((k++)) if [ $k -eq 10 ] then echo "Text read from file: $line" fi ...
+              How would you print just the 10th line of a file with the shell script? Shell script is as below: #!/bin/bash k=0 while IFS='' read -r line || [[ -n "$line" ]] do ((k++)) if [ $k -eq 10 ] then echo "Text read from file: $line" fi done < "$1" If you ...
             </div>
           </div>
         </div>
