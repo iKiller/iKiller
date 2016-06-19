@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>jiangtao</title><link href="https://jiangtao.me/" rel="alternate"></link><link href="https://jiangtao.me/feeds/misc.atom.xml" rel="self"></link><id>https://jiangtao.me/</id><updated>2016-03-21T19:34:00+08:00</updated><entry><title>JetBrains Makes its Products Free for Students</title><link href="https://jiangtao.me/jetbrains-makes-its-products-free-for-students.html" rel="alternate"></link><updated>2016-03-21T19:34:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-03-21:jetbrains-makes-its-products-free-for-students.html</id><summary type="html">&lt;p&gt;Are you learning Java, PHP, Ruby, Python, JavaScript, Objective-C or .NET technologies?&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jiangtao</title><link href="https://jiangtao.me/" rel="alternate"></link><link href="https://jiangtao.me/feeds/misc.atom.xml" rel="self"></link><id>https://jiangtao.me/</id><updated>2016-06-20T00:59:00+08:00</updated><entry><title>Valid Phone Numbers with shell script</title><link href="https://jiangtao.me/valid-phone-numbers-with-shell-script.html" rel="alternate"></link><updated>2016-06-20T00:59:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-06-20:valid-phone-numbers-with-shell-script.html</id><summary type="html">&lt;p&gt;
+Valid phone numbers must appear in one of the following two formats: (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit)
+Given a text file file.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nv"&gt;IFS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class="nb"&gt;read&lt;/span&gt; -r line &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; -n &lt;span class="nv"&gt;$line&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$line&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;~ ^&lt;span class="o"&gt;[&lt;/span&gt;0-9&lt;span class="o"&gt;]{&lt;/span&gt;3&lt;span class="o"&gt;}&lt;/span&gt;-&lt;span class="o"&gt;[&lt;/span&gt;0-9&lt;span class="o"&gt;]{&lt;/span&gt;3&lt;span class="o"&gt;}&lt;/span&gt;-&lt;span class="o"&gt;[&lt;/span&gt;0-9&lt;span class="o"&gt;]{&lt;/span&gt;4&lt;span class="o"&gt;}&lt;/span&gt;$&lt;span class="p"&gt;|&lt;/span&gt;^&lt;span class="se"&gt;\(&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;0-9&lt;span class="o"&gt;]{&lt;/span&gt;3&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\)\ &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;0-9&lt;span class="o"&gt;]{&lt;/span&gt;3&lt;span class="o"&gt;}&lt;/span&gt;-&lt;span class="o"&gt;[&lt;/span&gt;0-9&lt;span class="o"&gt;]{&lt;/span&gt;4&lt;span class="o"&gt;}&lt;/span&gt;$ &lt;span class="o"&gt;]]&lt;/span&gt;
+    &lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$line&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt; &amp;lt; file.txt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;file.txt:&lt;/strong&gt;
+156-355-0923
+142-902-901
+(142) 892-0913
+(23) 991-0024
+(450)091-2034
+13-092-9930
+124-091&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Code operation results:&lt;/strong&gt;
+1156-355-0923
+(142) 892-0913
+&lt;a href="https://leetcode.com/problems/valid-phone-numbers/"&gt;Read it on leetcode.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="shell"></category><category term="bash"></category><category term="linux"></category><category term="regex"></category></entry><entry><title>shell script to read lines from file</title><link href="https://jiangtao.me/shell-script-to-read-lines-from-file.html" rel="alternate"></link><updated>2016-06-20T00:17:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-06-20:shell-script-to-read-lines-from-file.html</id><summary type="html">&lt;p&gt;How would you print just the 10th line of a file with the shell script?
+Shell script is as below:&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nv"&gt;IFS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class="nb"&gt;read&lt;/span&gt; -r line &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; -n &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$line&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="o"&gt;((&lt;/span&gt;k++&lt;span class="o"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$k&lt;/span&gt; -eq &lt;span class="m"&gt;10&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Text read from file: &lt;/span&gt;&lt;span class="nv"&gt;$line&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt; &amp;lt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;span&gt;
+If you read a exist file, replace the last line with &lt;code&gt;done &amp;lt; file.txt&lt;/code&gt;(file.txt is the file you read lines from)
+&lt;/span&gt;
+&lt;br&gt;
+&lt;a href="https://leetcode.com/problems/tenth-line/"&gt;Read it on leetcode.com&lt;/a&gt;&lt;/p&gt;</summary><category term="shell"></category><category term="linux"></category><category term="unix"></category><category term="bash"></category></entry><entry><title>shell script to evaluate expression</title><link href="https://jiangtao.me/shell-script-to-evaluate-expression.html" rel="alternate"></link><updated>2016-06-19T11:50:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-06-19:shell-script-to-evaluate-expression.html</id><summary type="html">&lt;p&gt;To evaluate expressions involving decimal places (floating points) "bc -l" is very useful.
+Your task is to evaluate the expression and display the output correct to  decimal places.
+Shell script is as below:
+&lt;/p&gt;
+
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nb"&gt;read&lt;/span&gt; expression
+&lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;%.3f\n&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;scale=10;&lt;/span&gt;&lt;span class="nv"&gt;$expression&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; bc -l&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;+input:+
+23 + 12*(34 - 45) + 67/3&lt;/p&gt;
+&lt;p&gt;+output:+
+-86.667&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.hackerrank.com/challenges/bash-tutorials---arithmetic-operations"&gt;Read it on hackerrank.com&lt;/a&gt;&lt;/p&gt;</summary><category term="shell"></category><category term="linux"></category><category term="unix"></category><category term="bash"></category><category term="bc"></category></entry><entry><title>表白·与CL相爱</title><link href="https://jiangtao.me/biao-bai-yu-clxiang-ai.html" rel="alternate"></link><updated>2016-04-17T00:00:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-04-17:biao-bai-yu-clxiang-ai.html</id><summary type="html">&lt;h1&gt;背景说明&lt;/h1&gt;
+&lt;p&gt;我与CL在2016年1月30日第一次见面，Dian团队年终茶话会节目排练现场。我们共同好友XL邀请她来参加31日周六Dian的年终茶话会，她记错了日期提前一天来了。我们没有交谈，我只是问了下是谁。&lt;/p&gt;
+&lt;p&gt;3月7日早上我在微信上加了你好友。3月7日08:44我给你发了一个红包“女生节快乐！”
+3月22日李佳请客吃饭，我去楼下接你。给你发微信“131&lt;strong&gt;*&lt;/strong&gt;*798 找不到，打我电话”。然后在楼下碰着你，问我是不是来接你的，我说“我在楼下看风景”。
+3月22日晚上21:15我发微信“今天我吃药的时候看到一个新闻”，你回复“啥新闻”。然后我发了解释那个梗的文字：给你对象或喜欢的人发【今天我吃药的时候看到了一个新闻】，如果他问你是什么新闻而不是问你为什么吃药说明他不喜欢你。23日你发微信问我“昨天有几个人回答你的是 为什么吃药”，我回答说“没有，只发给你了”。
+3月26日下午16:41你发微信“江老师/你干嘛在/踢球？看球？水帖？还是健身？游泳？”。我17:20回复“游泳/你在干嘛/要来打桌球不”。17:35你一段语音说“本来要带我去吃好吃的，发语音给表叔他没回复”。我马上又问“明天有时间吗？”。你语音回复晚上有时间，然后很霸道地说“那就明天晚上吃饭吧/带你去吃好吃的”。3月27日周日晚，我们第一次约会吃饭+看电影。
+4月4日中午我们约好一起在食堂吃晚饭，我们俩第二次单独约会（在百景二楼吃的饭）。也是中午聊天快要结束的时候，你主动给了电话号码给我。下午打完篮球，我们晚上在食堂共进晚餐，然后你去图书馆学习，我回宿舍。
+4月5日我邀请你参加同学聚会，TQ和JE回武汉大家一起聚聚。也是在这一天我跟PP、XL、WH说我要开始追求你。
+4月16日晚上朋友们在群里说我怎么还不表白，CL怎么还不同意。PP说CL把我拖着，CL很生气说我不出来为她粉碎流言蜚语。晚上通电话，CL就一直说自己生气了。我立刻决定筹备第二天表白，建立微信亲友团群。
+4月17日按照之前的计划是上午陪CL在图书馆自习，下午她去练舞蹈我游泳，晚上一起看吃饭电影。16日晚上收到腾讯面试通知，于是就变成了17日上午面试腾讯，下午表白，晚上与CL吃饭看电影。表白的剧本都是临时策划的，幸好有亲友团助攻（自带智囊团属性）。向学弟借来无人机，打算用无人机运送鲜花和其他物品。经过测试和设想，决定表白的一束鲜花用无人机运送，随后无人机进入航拍模式。大捧鲜花让花童随后递上来。好朋友XL负责全程摄影。亲友团每人在胸前拿一个字，组成一句话“程琳做江涛女朋友”，在我说完话之后亲友团依次转身过来让程琳看见那一句话。安排了WH在表白进行中播放《梁山伯与祝英台》这首歌。在15:40~14:20之间我们所有演职人员一起排练、演义每一个环节。WH作为CL的扮演者，与我走了几遍表白流程。期间，CL的好朋友GYZ闻讯赶来，我请她帮忙打听CL是否在学院的楼上自习。确认CL在楼上自习以后，我们所有人都准备就绪。我拨通CL的电话，说你下来一下。。她当然已经知道我要表白了，有点怕怕地要拉上好朋友GYZ。我拉着CL走到预定地点，无人机出现，我摘下玫瑰。单膝跪地开始说表白词，脑袋一片空白不知道说什么了。无人机的噪声太大了，我鼓足勇气用力喊出“程琳做我女朋友吧”。&lt;/p&gt;
+&lt;h1&gt;筹备&lt;/h1&gt;</summary></entry><entry><title>JetBrains Makes its Products Free for Students</title><link href="https://jiangtao.me/jetbrains-makes-its-products-free-for-students.html" rel="alternate"></link><updated>2016-03-21T19:34:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-03-21:jetbrains-makes-its-products-free-for-students.html</id><summary type="html">&lt;p&gt;Are you learning Java, PHP, Ruby, Python, JavaScript, Objective-C or .NET technologies?&lt;/p&gt;
 &lt;p&gt;Or maybe you just plan to?Do it right from the start, with award-winning professional developer tools from JetBrains. And the best part: it's free of charge.
 more infomation please visit:
 &lt;a href="https://www.jetbrains.com/student/" title="Free for students: Professional development tools from JetBrains"&gt;read more&lt;/a&gt;&lt;/p&gt;</summary><category term="ide"></category><category term="tools"></category></entry><entry><title>测试markdown</title><link href="https://jiangtao.me/ce-shi-markdown.html" rel="alternate"></link><updated>2016-03-21T18:16:00+08:00</updated><author><name>jiangtao</name></author><id>tag:jiangtao.me,2016-03-21:ce-shi-markdown.html</id><summary type="html">&lt;h3&gt;关于我&lt;/h3&gt;
