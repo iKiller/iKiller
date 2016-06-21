@@ -64,8 +64,8 @@
             <a href="/tag/socket.html">socket</a>,             <a href="/tag/tcp.html">tcp</a>        </li>
     </ul>
     <div class="post-content">
-      <p>创建一个能接受客户端消息，在消息前加一个时间戳后返回的TCP服务器。
-<font color='ff8000'>tsTclnt.py</font></p>
+      <p>创建一个能接受客户端消息，在消息前加一个时间戳后返回的TCP服务器。</p>
+<p><font color='ff8000'>tsTclnt.py</font></p>
 <div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
 <span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
@@ -97,8 +97,8 @@
 
 
 <hr />
-<p>创建一个TCP客户端。
-<font color='ff8000'>tsTclnt.py</font></p>
+<p>创建一个TCP客户端。</p>
+<p><font color='ff8000'>tsTclnt.py</font></p>
 <div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -128,17 +128,17 @@
 <p>先运行服务器，后开客户端。
 下面就是客户端的输入和输出，不输入数据直接按回车键就可以退出程序：
 <pre><code>
-$ tsTclnt.py</p>
-<blockquote>
-<p>hi
+$ tsTclnt.py
+&gt; hi
 [Tue Jun 21 21:22:42 2016] hi
-南二舍 <br />
-[Tue Jun 21 21:23:21 2016] 南二舍</p>
-<p>$
+&gt; 南二舍 <br />
+[Tue Jun 21 21:23:21 2016] 南二舍
+&gt;
+$
 </code></pre></p>
-</blockquote>
 <p>服务器的输出主要用于调试目的：
 <pre><code>
+$ tsTserv.py
 waiting for connection...
 ...conneted from: ('127.0.0.1', 50272)
 waiting for connection...''
