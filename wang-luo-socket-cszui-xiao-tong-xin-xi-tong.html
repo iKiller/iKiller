@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="/wang-luo-socket-cszui-xiao-tong-xin-xi-tong.html" />
+
+    <title>  jiangtao &mdash; 网络socket cs最小通信系统
+</title>
+
+
+
+
+    <link rel="stylesheet" href="/theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="jiangtao">
+    <meta name="description" content="创建一个能接受客户端消息，在消息前加一个时间戳后返回的TCP服务器。 tsTclnt.py #!/usr/bin/env python from socket import * from time import ctime HOST='' PORT=21567 BUFSIZ = 1024 ADDR = (HOST, PORT) tcpSerSock = socket(AF_INET, SOCK_STREAM) tcpSerSock.bind(ADDR) tcpSerSock.listen(5) while True: print 'waiting for connection...' tcpCliSock, addr = tcpSerSock.accept() print '...conneted from:', addr while True: data ...">
+  <meta name="tags" contents="socket, tcp, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href=""><img src=https://avatars2.githubusercontent.com/u/3675980?v=3&s=400></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href="">jiangtao</a>
+      </h1>
+      <h3 class="header-text"></h3>
+      <ul class="header-menu list-inline">
+          <li><a class="nodec icon-mail-alt" href="mailto:taojiang0101@gmail.com"></a></li>
+          <li><a class="nodec icon-github" href="https://github.com/vnady"></a></li>
+          <li><a class="nodec icon-stackoverflow" href="http://stackoverflow.com/users/5523771/qingchen"></a></li>
+          <li><a class="nodec icon-twitter" href="https://twitter.com/taojiang0101"></a></li>
+          <li><a class="nodec icon-facebook" href="https://www.facebook.com/shawn.henson.125?ref=bookmarks"></a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/wang-luo-socket-cszui-xiao-tong-xin-xi-tong.html" title="Permalink to 网络socket cs最小通信系统">网络socket cs最小通信系统</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/wang-luo-socket-cszui-xiao-tong-xin-xi-tong.html" title="2016-06-21T21:05:00+08:00">二 21 六月 2016</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="/category/python.html">python</a>
+      </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/socket.html">socket</a>,             <a href="/tag/tcp.html">tcp</a>        </li>
+    </ul>
+    <div class="post-content">
+      <p>创建一个能接受客户端消息，在消息前加一个时间戳后返回的TCP服务器。
+<font color='ff8000'>tsTclnt.py</font></p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+
+<span class="n">HOST</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="n">PORT</span><span class="o">=</span><span class="mi">21567</span>
+<span class="n">BUFSIZ</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">ADDR</span> <span class="o">=</span> <span class="p">(</span><span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>
+
+<span class="n">tcpSerSock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">tcpSerSock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ADDR</span><span class="p">)</span>
+<span class="n">tcpSerSock</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s1">&#39;waiting for connection...&#39;</span>
+    <span class="n">tcpCliSock</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">tcpSerSock</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s1">&#39;...conneted from:&#39;</span><span class="p">,</span> <span class="n">addr</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">tcpCliSock</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">BUFSIZ</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">tcpCliSock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">] </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ctime</span><span class="p">(),</span> <span class="n">data</span><span class="p">))</span>
+
+    <span class="n">tcpCliSock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">tcpSerSock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+
+<hr />
+<p>创建一个TCP客户端。
+<font color='ff8000'>tsTclnt.py</font></p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">HOST</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span>
+<span class="n">PORT</span><span class="o">=</span><span class="mi">21567</span>
+<span class="n">BUFSIZ</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">ADDR</span> <span class="o">=</span> <span class="p">(</span><span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>
+
+<span class="n">tcpCliSock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">tcpCliSock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ADDR</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s1">&#39;&gt; &#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">tcpCliSock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">tcpCliSock</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">BUFSIZ</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">print</span> <span class="n">data</span>
+
+<span class="n">tcpCliSock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+
+<p>先运行服务器，后开客户端。
+下面就是客户端的输入和输出，不输入数据直接按回车键就可以退出程序：
+<pre><code>
+$ tsTclnt.py</p>
+<blockquote>
+<p>hi
+[Tue Jun 21 21:22:42 2016] hi
+南二舍 <br />
+[Tue Jun 21 21:23:21 2016] 南二舍</p>
+<p>$
+</code></pre></p>
+</blockquote>
+<p>服务器的输出主要用于调试目的：
+<pre><code>
+waiting for connection...
+...conneted from: ('127.0.0.1', 50272)
+waiting for connection...''
+</pre></code>
+当有客户端连接上来的时候，会显示一个“...connect from...”信息。</p>
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      jiangtao, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="/theme/js/jquery.min.js"></script>
+  <script src="/theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>
