@@ -22,8 +22,8 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="linux默认是不安装telnet的，默认使用ssh服务。 首先，查看一下有没有安装telnet及相关的服务软件： 第一步： :rpm -qa grep telnet 如果不存在就使用如下命令安装： :yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机) 第二步： 安装好之后，需要修改一下telnet的设置： :vim /etc/xinetd.d/telnet 修改使能选项： disable = yes 改为 no 保存退出。 启动xinetd服务 :service xinetd start 若启动成功，即可从其他主机使用telnet登陆该机。 PS：若要用root身份登陆，需要修改安全策略： :vim /etc/securetty 添加两行： pts/0 pts/1 保存退出，重启xinetd服务 ...">
-  <meta name="tags" contents="">
+    <meta name="description" content="linux默认是不安装telnet的，默认使用ssh服务。 首先，查看一下有没有安装telnet及相关的服务软件： 第一步： :rpm -qa |grep telnet :rpm -qa |grep xinetd 如果不存在就使用如下命令安装： :yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机) 第二步： 安装好之后，需要修改一下telnet的设置： :vim /etc/xinetd.d/telnet 修改使能选项： disable = yes 改为 no 保存退出。 启动xinetd服务 :service xinetd start 若启动成功，即可从其他主机使用telnet登陆该机。 PS：若要用root身份登陆，需要修改安全策略： :vim /etc/securetty 添加两行： pts/0 ...">
+  <meta name="tags" contents="linux, telnet, ">
 </head>
 
 <body>
@@ -57,49 +57,53 @@
       </li>
       <li class="muted">&middot;</li>
       <li class="post-category">
-        <a href="/category/misc.html">misc</a>
+        <a href="/category/dev-tools.html">dev-tools</a>
       </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/linux.html">linux</a>,             <a href="/tag/telnet.html">telnet</a>        </li>
     </ul>
     <div class="post-content">
       <p>linux默认是不安装telnet的，默认使用ssh服务。 
 首先，查看一下有没有安装telnet及相关的服务软件：</p>
 <h4>第一步：</h4>
-<table>
-<thead>
-<tr>
-<th align="left"><pre><code>:rpm -qa</th>
-<th>grep telnet</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">如果不存在就使用如下命令安装：</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<pre><code>:yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机)</code></pre>
+<p><pre><code>
+:rpm -qa |grep telnet 
+:rpm -qa |grep xinetd
+</code></pre></p>
+<p>如果不存在就使用如下命令安装：</p>
+<pre><code>
+:yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机)
+</code></pre>
 
 <h4>第二步：</h4>
 <p>安装好之后，需要修改一下telnet的设置： 
-<pre><code>:vim /etc/xinetd.d/telnet</code></pre></p>
+<pre><code>
+:vim /etc/xinetd.d/telnet
+</code></pre></p>
 <blockquote>
 <p>修改使能选项： 
 disable = yes 改为 no 
 保存退出。</p>
 </blockquote>
 <p>启动xinetd服务 
-<pre><code>:service xinetd start</code></pre></p>
+<pre><code>
+:service xinetd start
+</code></pre></p>
 <p>若启动成功，即可从其他主机使用telnet登陆该机。</p>
 <p>PS：若要用root身份登陆，需要修改安全策略： 
-<pre><code>:vim /etc/securetty</code></pre>
+<pre><code>
+:vim /etc/securetty
+</code></pre>
 添加两行：</p>
 <blockquote>
 <p>pts/0<br>
 pts/1 </p>
 </blockquote>
 <p>保存退出，重启xinetd服务。 
-<pre><code>:service xinetd restart</code></pre></p>
+<pre><code>
+:service xinetd restart
+</code></pre></p>
 <p>尝试以root身份登陆。</p>
     </div>
   </div>

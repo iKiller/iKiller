@@ -55,7 +55,7 @@
               <a class="text-muted" href="/valid-phone-numbers-with-shell-script.html" title="2016-06-20T00:59:00+08:00">一 20 六月 2016</a>
             </p>
             <p class="post-category">
-              <a href="/category/misc.html">misc</a>
+              <a href="/category/shell.html">shell</a>
             </p>
           </div>
           <div class="col-md-8">
@@ -75,7 +75,7 @@
               <a class="text-muted" href="/shell-script-to-read-lines-from-file.html" title="2016-06-20T00:17:00+08:00">一 20 六月 2016</a>
             </p>
             <p class="post-category">
-              <a href="/category/misc.html">misc</a>
+              <a href="/category/shell.html">shell</a>
             </p>
           </div>
           <div class="col-md-8">
@@ -95,7 +95,7 @@
               <a class="text-muted" href="/shell-script-to-evaluate-expression.html" title="2016-06-19T11:50:00+08:00">日 19 六月 2016</a>
             </p>
             <p class="post-category">
-              <a href="/category/misc.html">misc</a>
+              <a href="/category/shell.html">shell</a>
             </p>
           </div>
           <div class="col-md-8">
@@ -104,6 +104,26 @@
             </h2>
             <div class="post-content">
               To evaluate expressions involving decimal places (floating points) "bc -l" is very useful. Your task is to evaluate the expression and display the output correct to decimal places. Shell script is as below: #!/bin/bash read expression printf "%.3f\n" ...
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post mini-post">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="post-date">
+              <a class="text-muted" href="/linux-an-zhuang-telnet.html" title="2014-08-31T00:00:00+08:00">日 31 八月 2014</a>
+            </p>
+            <p class="post-category">
+              <a href="/category/dev-tools.html">dev-tools</a>
+            </p>
+          </div>
+          <div class="col-md-8">
+            <h2 class="post-title">
+              <a href="/linux-an-zhuang-telnet.html" title="Permalink to Linux 安装 Telnet">Linux 安装 Telnet</a>
+            </h2>
+            <div class="post-content">
+              linux默认是不安装telnet的，默认使用ssh服务。 首先，查看一下有没有安装telnet及相关的服务软件： 第一步： :rpm -qa |grep telnet :rpm -qa |grep xinetd 如果不存在就使用如下命令安装： :yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机) 第二步： 安装好之后，需要修改一下telnet的设置： :vim /etc/xinetd.d/telnet ...
             </div>
           </div>
         </div>
