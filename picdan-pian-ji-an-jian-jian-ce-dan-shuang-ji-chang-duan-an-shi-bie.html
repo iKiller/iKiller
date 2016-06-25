@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="/picdan-pian-ji-an-jian-jian-ce-dan-shuang-ji-chang-duan-an-shi-bie.html" />
+
+    <title>  jiangtao &mdash; PIC单片机按键检测，单双击、长短按识别
+</title>
+
+
+
+
+    <link rel="stylesheet" href="/theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="jiangtao">
+    <meta name="description" content="硬件PIC16F883芯片，10个按键，4位数码管。 芯片引脚图 数码管连接 PORTC连接数码管的8段LED，PORTA<3:0>连接数码管的4个共阴极（控制选通位）。 按键连接图 按键扫描程序在上一篇博文里面有说明，现在还是使用上面的扫面方式（代码都是一样的）。用记录按键按下和弹起的时间判断是不是长按和双击。TMR1设置，1:4分频、1:8预分频，计数周期为8uS。TMR1溢出一次时间为0.524288 S keypress记录TMR1溢出的次数。keypress大于等于2就跳出检测，认为他是长按（时间为1.048576S）。keypress\<1 且keyrelease>1 ，再次按下的keypress\<1就认为是双击。如下图： KP按键按下，KR按键弹起。 实现代码 #include<p16f883.inc> __CONFIG _CONFIG1, _LVP_OFF & _FCMEN_ON & _IESO_OFF & _BOR_OFF & _CPD_OFF ...">
+  <meta name="tags" contents="mcu, 按键检测, pic16f883, 数码管, 双击识别, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href=""><img src=https://avatars2.githubusercontent.com/u/3675980?v=3&s=400></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href="">jiangtao</a>
+      </h1>
+      <h3 class="header-text"></h3>
+      <ul class="header-menu list-inline">
+          <li><a class="nodec icon-mail-alt" href="mailto:taojiang0101@gmail.com"></a></li>
+          <li><a class="nodec icon-github" href="https://github.com/vnady"></a></li>
+          <li><a class="nodec icon-stackoverflow" href="http://stackoverflow.com/users/5523771/qingchen"></a></li>
+          <li><a class="nodec icon-twitter" href="https://twitter.com/taojiang0101"></a></li>
+          <li><a class="nodec icon-facebook" href="https://www.facebook.com/shawn.henson.125?ref=bookmarks"></a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/picdan-pian-ji-an-jian-jian-ce-dan-shuang-ji-chang-duan-an-shi-bie.html" title="Permalink to PIC单片机按键检测，单双击、长短按识别">PIC单片机按键检测，单双击、长短按识别</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/picdan-pian-ji-an-jian-jian-ce-dan-shuang-ji-chang-duan-an-shi-bie.html" title="2012-07-03T16:24:00+08:00">二 03 七月 2012</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="/category/mcusinglechip.html">mcu,singlechip</a>
+      </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/mcu.html">mcu</a>,             <a href="/tag/按键检测.html">按键检测</a>,             <a href="/tag/pic16f883.html">pic16f883</a>,             <a href="/tag/数码管.html">数码管</a>,             <a href="/tag/双击识别.html">双击识别</a>        </li>
+    </ul>
+    <div class="post-content">
+      <p>硬件PIC16F883芯片，10个按键，4位数码管。</p>
+<h4>芯片引脚图</h4>
+<p><img src="http://static.oschina.net/uploads/space/2012/0703/123141_g9mV_185037.jpg"></p>
+<h4>数码管连接</h4>
+<p>PORTC连接数码管的8段LED，PORTA&lt;3:0&gt;连接数码管的4个共阴极（控制选通位）。</p>
+<h4>按键连接图</h4>
+<p><img src="http://static.oschina.net/uploads/space/2012/0703/153943_JF0V_185037.jpg"></p>
+<p>按键扫描程序在上一篇博文里面有说明，现在还是使用上面的扫面方式（代码都是一样的）。用记录按键按下和弹起的时间判断是不是长按和双击。TMR1设置，1:4分频、1:8预分频，计数周期为8uS。TMR1溢出一次时间为0.524288 S keypress记录TMR1溢出的次数。keypress大于等于2就跳出检测，认为他是长按（时间为1.048576S）。keypress\&lt;1 且keyrelease>1 ，再次按下的keypress\&lt;1就认为是双击。如下图：
+KP按键按下，KR按键弹起。
+<img src="http://static.oschina.net/uploads/space/2012/0703/160027_pV55_185037.png"></p>
+<h4>实现代码</h4>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;p16f883.inc&gt;</span><span class="cp"></span>
+<span class="n">__CONFIG</span>    <span class="n">_CONFIG1</span><span class="p">,</span> <span class="n">_LVP_OFF</span> <span class="o">&amp;</span> <span class="n">_FCMEN_ON</span> <span class="o">&amp;</span> <span class="n">_IESO_OFF</span> <span class="o">&amp;</span> <span class="n">_BOR_OFF</span> <span class="o">&amp;</span> <span class="n">_CPD_OFF</span> <span class="o">&amp;</span> <span class="n">_CP_OFF</span> <span class="o">&amp;</span> <span class="n">_MCLRE_ON</span> <span class="o">&amp;</span> <span class="n">_PWRTE_ON</span> <span class="o">&amp;</span> <span class="n">_WDT_OFF</span> <span class="o">&amp;</span> <span class="n">_INTRC_OSC_NOCLKOUT</span>
+<span class="n">__CONFIG</span>    <span class="n">_CONFIG2</span><span class="p">,</span> <span class="n">_WRT_OFF</span> <span class="o">&amp;</span> <span class="n">_BOR21V</span>
+
+<span class="n">udata_shr</span>
+<span class="n">counter</span> <span class="n">res</span> <span class="mi">1</span> <span class="p">;</span><span class="err">计数个位</span>
+<span class="n">counter0</span> <span class="n">res</span> <span class="mi">1</span> <span class="p">;</span><span class="err">计数十位</span>
+<span class="n">counter1</span> <span class="n">res</span> <span class="mi">1</span> <span class="p">;</span><span class="err">扫描按键变量</span>
+<span class="n">counter2</span> <span class="n">res</span> <span class="mi">1</span> <span class="p">;</span><span class="err">延时程序微调参数</span>
+<span class="n">key_state</span> <span class="n">res</span> <span class="mi">1</span> <span class="p">;</span><span class="err">按键状态</span>
+<span class="n">keynum</span> <span class="n">res</span> <span class="mi">1</span> <span class="p">;</span><span class="err">按键标号</span>
+<span class="n">swap</span> <span class="n">res</span> <span class="mi">1</span> <span class="p">;</span><span class="err">确认按键转换值</span>
+<span class="n">keypress</span> <span class="n">res</span> <span class="mi">1</span>
+<span class="n">keypressbak</span> <span class="n">res</span> <span class="mi">1</span>
+<span class="n">keyrelease</span> <span class="n">res</span> <span class="mi">1</span>
+
+<span class="n">LED1</span> <span class="n">res</span> <span class="mi">1</span>
+<span class="n">LED2</span> <span class="n">res</span> <span class="mi">1</span>
+<span class="n">LED3</span> <span class="n">res</span> <span class="mi">1</span>
+<span class="n">LED4</span> <span class="n">res</span> <span class="mi">1</span>
+
+    <span class="n">UDATA</span>
+<span class="n">counter3</span> <span class="n">res</span> <span class="mi">1</span>
+<span class="n">counter4</span> <span class="n">res</span> <span class="mi">1</span>
+<span class="n">sign</span> <span class="n">res</span> <span class="mi">1</span>
+
+<span class="n">reset</span> <span class="n">code</span> <span class="mh">0x0000</span>
+<span class="n">pagesel</span> <span class="n">start</span>
+<span class="k">goto</span> <span class="n">start</span>
+
+<span class="p">;</span><span class="n">int_vector</span> <span class="n">code</span> <span class="mh">0x0004</span>
+<span class="n">code</span>
+
+<span class="n">start</span>
+<span class="n">banksel</span> <span class="n">ANSEL</span> <span class="p">;</span><span class="err">设置</span><span class="n">PORTA</span><span class="err">为数字模式</span>
+<span class="n">clrf</span> <span class="n">ANSEL</span>
+<span class="n">banksel</span> <span class="n">ANSELH</span> <span class="p">;</span><span class="err">设置</span><span class="n">PORTB</span><span class="err">为数字模式</span>
+<span class="n">clrf</span> <span class="n">ANSELH</span>
+<span class="n">banksel</span> <span class="n">TRISB</span> <span class="p">;</span><span class="err">设置</span><span class="n">PORTB</span><span class="err">为输入模式</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11111111</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">TRISB</span>
+<span class="n">banksel</span> <span class="n">WPUB</span> <span class="p">;</span><span class="err">设置</span><span class="n">PORTB</span><span class="err">弱上拉</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11111111</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">WPUB</span>
+<span class="n">banksel</span> <span class="n">OPTION_REG</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mo">01000101</span><span class="err">&#39;</span> <span class="p">;</span><span class="n">TMR0</span> <span class="mi">64</span><span class="err">分频</span>
+<span class="n">movwf</span> <span class="n">OPTION_REG</span>
+<span class="n">banksel</span> <span class="n">T1CON</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">10010001</span><span class="err">&#39;</span> <span class="p">;</span><span class="err">打开</span><span class="n">TMR1</span><span class="err">，设置</span><span class="mi">1</span><span class="o">:</span><span class="mi">8</span><span class="err">预分频，内部时钟源</span><span class="mi">1</span><span class="o">:</span><span class="mi">4</span><span class="err">分频</span>
+<span class="n">movwf</span> <span class="n">T1CON</span>
+<span class="n">banksel</span> <span class="n">TRISA</span> <span class="p">;</span><span class="err">设置</span><span class="n">PORTA</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="err">为输出，接数码管的共阴极</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11110000</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">TRISA</span>
+<span class="n">banksel</span> <span class="n">PORTA</span>
+<span class="n">clrf</span> <span class="n">PORTA</span>
+<span class="n">banksel</span> <span class="n">TRISC</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mo">00000000</span><span class="err">&#39;</span> <span class="p">;</span><span class="err">设置</span><span class="n">PORTC</span><span class="err">为输出，接</span><span class="mi">8</span><span class="err">段数码管</span>
+<span class="n">movwf</span> <span class="n">TRISC</span>
+<span class="n">clrf</span> <span class="n">counter1</span>
+
+<span class="n">loop</span>
+<span class="n">movlw</span> <span class="n">HIGH</span> <span class="n">Table1</span>
+<span class="n">movwf</span> <span class="n">PCLATH</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">TRISB</span>
+<span class="n">movwf</span> <span class="n">TRISB</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">PORTB</span>
+<span class="n">movwf</span> <span class="n">PORTB</span>
+<span class="n">movf</span> <span class="n">PORTB</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">key_state</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11001000</span><span class="err">&#39;</span>
+<span class="n">iorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+
+<span class="n">xorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">swap</span>
+<span class="n">comf</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">incfsz</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">case1</span>
+
+<span class="n">incf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">TRISB</span>
+<span class="n">movwf</span> <span class="n">TRISB</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">PORTB</span>
+<span class="n">movwf</span> <span class="n">PORTB</span>
+<span class="n">movf</span> <span class="n">PORTB</span><span class="p">,</span><span class="mi">0</span> <span class="p">;</span><span class="err">读取</span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="err">状态</span>
+<span class="n">movwf</span> <span class="n">key_state</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11001000</span><span class="err">&#39;</span>
+<span class="n">iorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1vv</span>
+<span class="n">xorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">swap</span>
+<span class="n">comf</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">incfsz</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">case2</span>
+
+<span class="n">incf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">TRISB</span>
+<span class="n">movwf</span> <span class="n">TRISB</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">PORTB</span>
+<span class="n">movwf</span> <span class="n">PORTB</span>
+<span class="n">movf</span> <span class="n">PORTB</span><span class="p">,</span><span class="mi">0</span> <span class="p">;</span><span class="err">读取</span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="err">状态</span>
+<span class="n">movwf</span> <span class="n">key_state</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11001000</span><span class="err">&#39;</span>
+<span class="n">iorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">xorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">swap</span>
+<span class="n">comf</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">incfsz</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">case3</span>
+
+<span class="n">incf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">TRISB</span>
+<span class="n">movwf</span> <span class="n">TRISB</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">PORTB</span>
+<span class="n">movwf</span> <span class="n">PORTB</span>
+<span class="n">movf</span> <span class="n">PORTB</span><span class="p">,</span><span class="mi">0</span> <span class="p">;</span><span class="err">读取</span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="err">状态</span>
+<span class="n">movwf</span> <span class="n">key_state</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11001000</span><span class="err">&#39;</span>
+<span class="n">iorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">xorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">swap</span>
+<span class="n">comf</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">incfsz</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">case4</span>
+<span class="k">goto</span> <span class="k">continue</span>
+
+<span class="n">case1</span>
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">4</span>
+<span class="k">goto</span> <span class="n">key2</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;1&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+<span class="n">key2</span>
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">2</span>
+<span class="k">goto</span> <span class="n">key3</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;2&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+<span class="n">key3</span>
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">key4</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;3&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+<span class="n">key4</span>
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">goto</span> <span class="k">continue</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;4&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+
+<span class="n">case2</span>
+<span class="p">;</span><span class="o">-------------------------------------------------</span>
+<span class="p">;</span><span class="err">下面代码实现</span><span class="n">K10</span><span class="err">\</span><span class="n">K8</span><span class="err">\</span><span class="n">K5</span><span class="err">的按键处理</span>
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">2</span>
+<span class="k">goto</span> <span class="n">key8</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="err">&#39;</span><span class="mi">10</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+
+<span class="p">;</span><span class="o">------------------------------------</span>
+<span class="p">;</span><span class="err">处理</span><span class="n">K8</span>
+
+<span class="n">key8</span>
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+
+<span class="p">;</span><span class="o">------------------------------------</span>
+<span class="p">;</span><span class="err">处理</span><span class="n">K5</span>
+
+<span class="n">key5</span>
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">goto</span> <span class="n">case3</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;5&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+
+<span class="n">case3</span>
+<span class="p">;</span><span class="o">----------------------------------</span>
+<span class="p">;</span><span class="err">处理</span><span class="n">K6</span><span class="o">/</span><span class="n">K9</span>
+
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">key6</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;9&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+<span class="n">key6</span>
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">goto</span> <span class="n">case4</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;6&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+<span class="k">goto</span> <span class="k">continue</span>
+<span class="n">case4</span>
+
+<span class="p">;</span><span class="o">-----------------------------------------</span>
+<span class="p">;</span><span class="err">处理</span><span class="n">K7</span>
+
+<span class="n">btfsc</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">goto</span> <span class="k">continue</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;7&#39;</span>
+<span class="n">movwf</span> <span class="n">keynum</span>
+<span class="n">call</span> <span class="n">DealKeyPress</span>
+
+<span class="k">continue</span>
+<span class="n">call</span> <span class="n">display</span>
+<span class="n">clrf</span> <span class="n">counter1</span>
+<span class="k">goto</span> <span class="n">loop</span>
+
+<span class="p">;</span><span class="o">-----------------------------------</span>
+<span class="p">;</span><span class="err">按键去抖，约</span><span class="mi">8</span><span class="n">mS</span>
+
+<span class="n">delay</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;4&#39;</span>
+<span class="n">movwf</span> <span class="n">counter2</span>
+<span class="n">LOOP2</span>
+<span class="n">banksel</span> <span class="n">TMR0</span>
+<span class="n">clrf</span> <span class="n">TMR0</span>
+<span class="n">LOOP1</span>
+<span class="n">banksel</span> <span class="n">INTCON</span>
+<span class="n">btfss</span> <span class="n">INTCON</span><span class="p">,</span><span class="n">T0IF</span>
+<span class="k">goto</span> <span class="n">LOOP1</span>
+
+<span class="n">bcf</span> <span class="n">INTCON</span><span class="p">,</span><span class="n">T0IF</span>
+<span class="n">decfsz</span> <span class="n">counter2</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">LOOP2</span>
+<span class="k">return</span>
+
+<span class="n">delay2</span>
+<span class="n">incfsz</span> <span class="n">counter3</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">delay2</span>
+<span class="k">return</span>
+
+<span class="p">;</span><span class="o">--------------------------------</span>
+<span class="p">;</span><span class="err">按键处理程序</span>
+<span class="p">;</span>
+
+<span class="n">DealKeyPress</span>
+<span class="n">clrf</span> <span class="n">LED1</span>
+<span class="n">clrf</span> <span class="n">LED2</span>
+<span class="n">clrf</span> <span class="n">LED3</span>
+<span class="n">clrf</span> <span class="n">LED4</span>
+<span class="n">call</span> <span class="n">delay</span>
+
+<span class="n">banksel</span> <span class="n">TMR1H</span>
+<span class="n">clrf</span> <span class="n">TMR1H</span>
+<span class="n">banksel</span> <span class="n">TMR1L</span>
+<span class="n">clrf</span> <span class="n">TMR1L</span>
+<span class="n">clrf</span> <span class="n">keypress</span>
+<span class="n">presstime</span>
+<span class="n">banksel</span> <span class="n">PIR1</span>
+<span class="n">btfss</span> <span class="n">PIR1</span><span class="p">,</span><span class="n">TMR1IF</span>
+<span class="k">goto</span> <span class="n">next</span>
+<span class="n">bcf</span> <span class="n">PIR1</span><span class="p">,</span><span class="n">TMR1IF</span>
+<span class="n">incf</span> <span class="n">keypress</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;2&#39;</span>
+<span class="n">subwf</span> <span class="n">keypress</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">banksel</span> <span class="n">STATUS</span>
+<span class="n">btfsc</span> <span class="n">STATUS</span><span class="p">,</span><span class="n">C</span>
+<span class="k">goto</span> <span class="n">longpress</span>
+<span class="n">next</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">TRISB</span>
+<span class="n">movwf</span> <span class="n">TRISB</span>
+<span class="n">banksel</span> <span class="n">PORTB</span>
+<span class="n">movwf</span> <span class="n">PORTB</span>
+<span class="n">movf</span> <span class="n">PORTB</span><span class="p">,</span><span class="mi">0</span> <span class="p">;</span><span class="err">读取</span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="err">状态</span>
+<span class="n">movwf</span> <span class="n">key_state</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11001000</span><span class="err">&#39;</span>
+<span class="n">iorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">xorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">swap</span>
+<span class="n">comf</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">incfsz</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">presstime</span>
+<span class="n">call</span> <span class="n">delay</span>
+
+<span class="n">banksel</span> <span class="n">TMR1H</span>
+<span class="n">clrf</span> <span class="n">TMR1H</span>
+<span class="n">banksel</span> <span class="n">TMR1L</span>
+<span class="n">clrf</span> <span class="n">TMR1L</span>
+<span class="n">clrf</span> <span class="n">keyrelease</span>
+<span class="n">releasetime</span>
+<span class="n">banksel</span> <span class="n">PIR1</span>
+<span class="n">btfss</span> <span class="n">PIR1</span><span class="p">,</span><span class="n">TMR1IF</span>
+<span class="k">goto</span> <span class="n">next1</span>
+<span class="n">bcf</span> <span class="n">PIR1</span><span class="p">,</span><span class="n">TMR1IF</span>
+<span class="n">incf</span> <span class="n">keyrelease</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;1&#39;</span>
+<span class="n">subwf</span> <span class="n">keyrelease</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">banksel</span> <span class="n">STATUS</span>
+<span class="n">btfsc</span> <span class="n">STATUS</span><span class="p">,</span><span class="n">C</span>
+<span class="k">goto</span> <span class="n">click</span>
+<span class="n">next1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">banksel</span> <span class="n">TRISB</span>
+<span class="n">movwf</span> <span class="n">TRISB</span>
+<span class="n">banksel</span> <span class="n">PORTB</span>
+<span class="n">movwf</span> <span class="n">PORTB</span>
+<span class="n">movf</span> <span class="n">PORTB</span><span class="p">,</span><span class="mi">0</span> <span class="p">;</span><span class="err">读取</span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="err">状态</span>
+<span class="n">movwf</span> <span class="n">key_state</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11001000</span><span class="err">&#39;</span>
+<span class="n">iorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">xorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">swap</span>
+<span class="n">comf</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">incfsz</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">over</span>
+<span class="k">goto</span> <span class="n">releasetime</span>
+<span class="n">over</span>
+<span class="n">call</span> <span class="n">delay</span>
+<span class="n">banksel</span> <span class="n">TMR1H</span>
+<span class="n">clrf</span> <span class="n">TMR1H</span>
+<span class="n">banksel</span> <span class="n">TMR1L</span>
+<span class="n">clrf</span> <span class="n">TMR1L</span>
+<span class="n">clrf</span> <span class="n">keypress</span>
+<span class="n">presstime1</span>
+<span class="n">banksel</span> <span class="n">PIR1</span>
+<span class="n">btfss</span> <span class="n">PIR1</span><span class="p">,</span><span class="n">TMR1IF</span>
+<span class="k">goto</span> <span class="n">next2</span>
+<span class="n">bcf</span> <span class="n">PIR1</span><span class="p">,</span><span class="n">TMR1IF</span>
+<span class="n">incf</span> <span class="n">keypress</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;1&#39;</span>
+<span class="n">subwf</span> <span class="n">keypress</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">banksel</span> <span class="n">STATUS</span>
+<span class="n">btfsc</span> <span class="n">STATUS</span><span class="p">,</span><span class="n">C</span>
+<span class="k">goto</span> <span class="n">click</span>
+<span class="n">next2</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+
+<span class="n">banksel</span> <span class="n">TRISB</span>
+<span class="n">movwf</span> <span class="n">TRISB</span>
+<span class="n">banksel</span> <span class="n">PORTB</span>
+<span class="n">movwf</span> <span class="n">PORTB</span>
+<span class="n">movf</span> <span class="n">PORTB</span><span class="p">,</span><span class="mi">0</span> <span class="p">;</span><span class="err">读取</span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="err">状态</span>
+<span class="n">movwf</span> <span class="n">key_state</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11001000</span><span class="err">&#39;</span>
+<span class="n">iorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">movf</span> <span class="n">counter1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table1</span>
+<span class="n">xorwf</span> <span class="n">key_state</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">swap</span>
+<span class="n">comf</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">incfsz</span> <span class="n">swap</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">goto</span> <span class="n">presstime1</span>
+<span class="n">movf</span> <span class="n">keynum</span><span class="p">,</span><span class="mi">0</span>       <span class="p">;</span><span class="err">双击</span>
+<span class="n">movwf</span> <span class="n">LED1</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="err">&#39;</span><span class="mi">10</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">LED2</span>
+<span class="n">incf</span> <span class="n">counter</span>
+<span class="k">goto</span> <span class="n">back</span>
+<span class="n">longpress</span>           <span class="p">;</span><span class="err">长按</span>
+<span class="n">movf</span> <span class="n">keynum</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">LED2</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="err">&#39;</span><span class="mi">10</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">LED1</span>
+<span class="k">goto</span> <span class="n">back</span>
+<span class="n">click</span>               <span class="p">;</span><span class="err">单击</span>
+<span class="n">movf</span> <span class="n">keynum</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">LED1</span>
+<span class="n">movwf</span> <span class="n">LED2</span>
+<span class="n">back</span>
+<span class="n">call</span> <span class="n">CountNum</span>
+<span class="k">return</span>
+
+<span class="p">;</span><span class="o">----------------------------</span>
+<span class="p">;</span><span class="err">按键计数</span>
+<span class="p">;</span>
+<span class="n">CountNum</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="sc">&#39;9&#39;</span>
+<span class="n">subwf</span> <span class="n">counter</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">banksel</span> <span class="n">STATUS</span>
+<span class="n">btfsc</span> <span class="n">STATUS</span><span class="p">,</span><span class="n">C</span>
+<span class="k">goto</span> <span class="n">add</span>
+<span class="n">incf</span> <span class="n">counter</span>
+<span class="k">goto</span> <span class="n">over1</span>
+<span class="n">add</span>
+<span class="n">incf</span> <span class="n">counter0</span>
+<span class="n">clrf</span> <span class="n">counter</span>
+<span class="n">movlw</span> <span class="n">d</span><span class="err">&#39;</span><span class="mi">10</span><span class="err">&#39;</span>
+<span class="n">subwf</span> <span class="n">counter0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">banksel</span> <span class="n">STATUS</span>
+<span class="n">btfsc</span> <span class="n">STATUS</span><span class="p">,</span><span class="n">C</span>
+<span class="k">goto</span> <span class="n">clear</span>
+<span class="k">goto</span> <span class="n">over1</span>
+
+<span class="n">clear</span>
+<span class="n">clrf</span> <span class="n">counter0</span>
+<span class="n">over1</span>
+<span class="n">movf</span> <span class="n">counter</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">LED4</span>
+<span class="n">movf</span> <span class="n">counter0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">movwf</span> <span class="n">LED3</span>
+<span class="k">return</span>
+
+<span class="p">;</span><span class="o">--------------------------------</span>
+<span class="p">;</span><span class="err">显示数码管</span>
+<span class="p">;</span>
+<span class="n">display</span>
+
+<span class="n">banksel</span> <span class="n">PORTA</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11111110</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">PORTA</span>
+<span class="n">movf</span> <span class="n">LED1</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table3</span>
+<span class="n">banksel</span> <span class="n">PORTC</span>
+<span class="n">movwf</span> <span class="n">PORTC</span>
+<span class="n">call</span> <span class="n">delay2</span>
+
+<span class="n">banksel</span> <span class="n">PORTA</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11111101</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">PORTA</span>
+<span class="n">movf</span> <span class="n">LED2</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table3</span>
+<span class="n">banksel</span> <span class="n">PORTC</span>
+<span class="n">movwf</span> <span class="n">PORTC</span>
+<span class="n">call</span> <span class="n">delay2</span>
+
+<span class="n">banksel</span> <span class="n">PORTA</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11111011</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">PORTA</span>
+<span class="n">movf</span> <span class="n">LED3</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table3</span>
+<span class="n">banksel</span> <span class="n">PORTC</span>
+<span class="n">movwf</span> <span class="n">PORTC</span>
+<span class="n">call</span> <span class="n">delay2</span>
+
+<span class="n">banksel</span> <span class="n">PORTA</span>
+<span class="n">movlw</span> <span class="n">b</span><span class="err">&#39;</span><span class="mi">11110111</span><span class="err">&#39;</span>
+<span class="n">movwf</span> <span class="n">PORTA</span>
+<span class="n">movf</span> <span class="n">LED4</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">Table3</span>
+<span class="n">banksel</span> <span class="n">PORTC</span>
+<span class="n">movwf</span> <span class="n">PORTC</span>
+<span class="n">call</span> <span class="n">delay2</span>
+<span class="k">return</span>
+
+<span class="p">;</span><span class="o">----------------------</span>
+<span class="p">;</span><span class="n">Table</span><span class="err">真值表</span>
+
+<span class="n">Table1</span> <span class="p">;</span><span class="n">PORTB</span><span class="err">、</span><span class="n">TRISB</span><span class="err">扫描配置信息</span>
+    <span class="n">ADDWF</span>   <span class="n">PCL</span><span class="p">,</span><span class="n">f</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mi">11111111</span><span class="err">&#39;</span> 
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mi">11101111</span><span class="err">&#39;</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mi">11111011</span><span class="err">&#39;</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mi">11111101</span><span class="err">&#39;</span>
+
+<span class="n">Table3</span> <span class="p">;</span><span class="n">PORTC</span><span class="err">设置，数码管真值表</span>
+    <span class="n">ADDWF</span>   <span class="n">PCL</span><span class="p">,</span><span class="n">f</span>
+
+<span class="p">;</span> <span class="n">RETLW</span> <span class="n">B</span><span class="err">&#39;</span><span class="mo">01001001</span><span class="err">&#39;</span> <span class="p">;</span><span class="err">三条横线</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mi">10111111</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">0</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">00000110</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">1</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">01011011</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">2</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">01001111</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">3</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">01100110</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">4</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">01101101</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">5</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">01111101</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">6</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">00000111</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">7</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">01111111</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">8</span>
+    <span class="n">RETLW</span>   <span class="n">B</span><span class="err">&#39;</span><span class="mo">01101111</span><span class="err">&#39;</span> <span class="p">;</span><span class="mi">9</span>
+
+<span class="n">RETLW</span> <span class="n">B</span><span class="err">&#39;</span><span class="mo">00000000</span><span class="err">&#39;</span> <span class="p">;</span><span class="err">黑屏</span>
+
+<span class="n">end</span>
+</pre></div>
+
+
+<p>长按效果——3、4位数码管计数一直加，1位数码管熄灭，2位数码管显示按键编号；
+双击效果——3、4位数码管计数增加2，2位数码管熄灭，1位数码管显示按键编号；
+单击效果——1、2数码管显示按键编号，3、4位数码管计数增加1。</p>
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      jiangtao, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="/theme/js/jquery.min.js"></script>
+  <script src="/theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>
