@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="/ji-yu-pic16f883xin-pian-de-hui-bian-miao-shan-ledshi-yan.html" />
+
+    <title>  jiangtao &mdash; 基于pic16f883芯片的汇编秒闪LED实验
+</title>
+
+
+
+
+    <link rel="stylesheet" href="/theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="jiangtao">
+    <meta name="description" content="器材：Microchip公司的控制芯片pic16f883、LED灯、电阻、导线、程序下载器、代码编译仿真软件MPLABV8.8 电路连接原理图： 软件流程图： 本实验使用TIMER1模块 16位计数器溢出检测来完成周期性延时0.5S。 数据计算 计算方法如下： 计数频率：4MHz * 1/4 * 1/8 = 1/8 MHz 则计数周期为：8uS 由于代码中设置每延迟0.5S，LED引脚电位取反来切换状态。所以要使计数器累计计数0.5S： 计数器次数= 0.5S/8uS = 62500次 TMR1是16为计数器，所以计数起始值设为65536-62500 = 3036 （0x0BDC）。这样子仿真LED闪烁周期为：1.000036 S 微调&校准周期 于是将计数起点调整为0x0BDF，并且在循环里加入6个NOP（之前测试执行一条命令的周期为1uS），LED闪烁周期准确的为1 ...">
+  <meta name="tags" contents="PIC16F883, LED, 闪灯, 汇编, 定时器, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href=""><img src=https://avatars2.githubusercontent.com/u/3675980?v=3&s=400></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href="">jiangtao</a>
+      </h1>
+      <h3 class="header-text"></h3>
+      <ul class="header-menu list-inline">
+          <li><a class="nodec icon-mail-alt" href="mailto:taojiang0101@gmail.com"></a></li>
+          <li><a class="nodec icon-github" href="https://github.com/vnady"></a></li>
+          <li><a class="nodec icon-stackoverflow" href="http://stackoverflow.com/users/5523771/qingchen"></a></li>
+          <li><a class="nodec icon-twitter" href="https://twitter.com/taojiang0101"></a></li>
+          <li><a class="nodec icon-facebook" href="https://www.facebook.com/shawn.henson.125?ref=bookmarks"></a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/ji-yu-pic16f883xin-pian-de-hui-bian-miao-shan-ledshi-yan.html" title="Permalink to 基于pic16f883芯片的汇编秒闪LED实验">基于pic16f883芯片的汇编秒闪LED实验</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/ji-yu-pic16f883xin-pian-de-hui-bian-miao-shan-ledshi-yan.html" title="2012-06-30T03:21:00+08:00">六 30 六月 2012</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="/category/mcusinglechip.html">MCU,singlechip</a>
+      </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/PIC16F883.html">PIC16F883</a>,             <a href="/tag/LED.html">LED</a>,             <a href="/tag/闪灯.html">闪灯</a>,             <a href="/tag/汇编.html">汇编</a>,             <a href="/tag/定时器.html">定时器</a>        </li>
+    </ul>
+    <div class="post-content">
+      <p>器材：Microchip公司的控制芯片pic16f883、LED灯、电阻、导线、程序下载器、代码编译仿真软件MPLABV8.8</p>
+<h3>电路连接原理图：</h3>
+<p><img src="http://static.oschina.net/uploads/space/2012/0630/025650_uZO3_185037.png"></p>
+<h3>软件流程图：</h3>
+<p><img src="http://static.oschina.net/uploads/space/2012/0630/031143_AvWA_185037.png">
+本实验使用TIMER1模块 16位计数器溢出检测来完成周期性延时0.5S。</p>
+<h3>数据计算</h3>
+<p>计算方法如下：
+计数频率：4MHz * 1/4 * 1/8 = 1/8 MHz
+则计数周期为：8uS
+由于代码中设置每延迟0.5S，LED引脚电位取反来切换状态。所以要使计数器累计计数0.5S：
+计数器次数= 0.5S/8uS = 62500次
+TMR1是16为计数器，所以计数起始值设为65536-62500 = 3036 （0x0BDC）。这样子仿真LED闪烁周期为：1.000036 S</p>
+<h3>微调&amp;校准周期</h3>
+<p>于是将计数起点调整为0x0BDF，并且在循环里加入6个NOP（之前测试执行一条命令的周期为1uS），LED闪烁周期准确的为1 S。</p>
+<p>实现代码如下：</p>
+<div class="highlight"><pre><span></span>#include&lt;p16f883.inc&gt;
+
+UDATA_SHR
+COUNTER1 RES 1
+COUNTER2 RES 1
+RESET_VECTOR CODE 0X0000
+NOP
+GOTO MAIN
+MAIN
+BANKSEL ANSEL                ;设置PORTA为数字信号I/O
+CLRF ANSEL
+BANKSEL TRISA
+MOVLW B&#39;00000000&#39; ;PORTA全设为输出
+MOVWF TRISA
+BANKSEL T1CON
+MOVLW B&#39;10110101&#39; ;配置timer1 ，1:8预分频（时钟信号进入TIMER1时有一个1:4分频）
+MOVWF T1CON
+BANKSEL OSCCON
+MOVLW B&#39;11101100&#39; ;时钟4M
+MOVWF OSCCON
+Delay ;延时，等待时钟振荡器稳定
+INCFSZ COUNTER1,1
+GOTO Delay
+INCFSZ COUNTER2,1
+GOTO Delay
+BANKSEL PORTA
+
+LOOP
+COMF PORTA,1 ;PORTA I/O取反
+CALL LOOP1 ;计数器计数，延时
+GOTO LOOP
+
+LOOP1
+BANKSEL TMR1H        ;TMR1设置计数初值
+MOVLW 0X0B
+MOVWF TMR1H
+BANKSEL TMR1L
+MOVLW 0XDF
+MOVWF TMR1L
+BANKSEL PIR1
+LOOP2 ;TMR1溢出检测
+BTFSS PIR1,0
+GOTO LOOP2
+BCF PIR1,0
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+RETURN
+END
+</pre></div>
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      jiangtao, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="/theme/js/jquery.min.js"></script>
+  <script src="/theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>

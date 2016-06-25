@@ -327,6 +327,86 @@
           </div>
         </div>
       </div>
+      <div class="post mini-post">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="post-date">
+              <a class="text-muted" href="/tkinter-a-gui-for-python.html" title="2013-02-02T01:26:00+08:00">六 02 二月 2013</a>
+            </p>
+            <p class="post-category">
+              <a href="/category/python.html">python</a>
+            </p>
+          </div>
+          <div class="col-md-8">
+            <h2 class="post-title">
+              <a href="/tkinter-a-gui-for-python.html" title="Permalink to Tkinter, a Gui for python">Tkinter, a Gui for python</a>
+            </h2>
+            <div class="post-content">
+              Tkinter 编程实现python的GUI。Tk GUI工具包包含了非常方便、简洁的python编程接口，要实现一个图形界面仅需以下几步： -导入Tkinter 模块 -创建这个图形界面的主窗口 -添加部件（如按钮、菜单、标题）到图形界面 -进入主事件循环，采取行动应对用户引发的事件 下面是我今天写的一个小程序： #!/usr/bin/env python import Tkinter top = Tkinter.Tk() quit = Tkinter.Button(top, ...
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post mini-post">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="post-date">
+              <a class="text-muted" href="/wind7pi-chu-li-she-zhi-ipbatchjiao-ben.html" title="2013-01-21T00:43:00+08:00">一 21 一月 2013</a>
+            </p>
+            <p class="post-category">
+              <a href="/category/wind7batch.html">wind7,batch</a>
+            </p>
+          </div>
+          <div class="col-md-8">
+            <h2 class="post-title">
+              <a href="/wind7pi-chu-li-she-zhi-ipbatchjiao-ben.html" title="Permalink to wind7批处理设置IP（BATCH脚本）">wind7批处理设置IP（BATCH脚本）</a>
+            </h2>
+            <div class="post-content">
+              说明：在x.x.x.x处填上自己的IP地址。保存成“.bat”文件，以管理员身份运行即可。 代码如下： @echo off :main cls echo 请按提示操作... echo. echo 1 STI-HUST echo 2 Dian-HUST-711 echo 3 DHCP echo 4 Exit echo. set /p choice= Input a number: echo. if "%choice%"=="1" goto ip_STI if "%choice%"=="2" goto ...
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post mini-post">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="post-date">
+              <a class="text-muted" href="/python-wang-luo-bian-cheng-socket_serverdan-xian-cheng-xiang-ying-qing-qiu.html" title="2012-12-05T23:45:00+08:00">三 05 十二月 2012</a>
+            </p>
+            <p class="post-category">
+              <a href="/category/python.html">python</a>
+            </p>
+          </div>
+          <div class="col-md-8">
+            <h2 class="post-title">
+              <a href="/python-wang-luo-bian-cheng-socket_serverdan-xian-cheng-xiang-ying-qing-qiu.html" title="Permalink to Python 网络编程socket_server单线程响应请求">Python 网络编程socket_server单线程响应请求</a>
+            </h2>
+            <div class="post-content">
+              刚开始接触python网络编程，使用socket编写一个简单的单线程server。socket模块提供了一个工厂函数，也被称为socket，开发者可以调用函数以生成一个套接字对象S。要想执行网络层操作，可以调用S上的方法。在客户程序中，可以调用S.connect连接到一个服务器。在服务器程序中，可以调用S.bind和S.listen等待客户程序的连接。在客户程序请求连接时，服务器程序可以调用S.accept接受请求，该方法将返回连接到客户程序的另一个套接字对象S1.在有了一个连接的套接字对象之后，就可 ...
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="post mini-post">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="post-date">
+              <a class="text-muted" href="/ji-yu-pic16f883xin-pian-de-hui-bian-miao-shan-ledshi-yan.html" title="2012-06-30T03:21:00+08:00">六 30 六月 2012</a>
+            </p>
+            <p class="post-category">
+              <a href="/category/mcusinglechip.html">MCU,singlechip</a>
+            </p>
+          </div>
+          <div class="col-md-8">
+            <h2 class="post-title">
+              <a href="/ji-yu-pic16f883xin-pian-de-hui-bian-miao-shan-ledshi-yan.html" title="Permalink to 基于pic16f883芯片的汇编秒闪LED实验">基于pic16f883芯片的汇编秒闪LED实验</a>
+            </h2>
+            <div class="post-content">
+              器材：Microchip公司的控制芯片pic16f883、LED灯、电阻、导线、程序下载器、代码编译仿真软件MPLABV8.8 电路连接原理图： 软件流程图： 本实验使用TIMER1模块 16位计数器溢出检测来完成周期性延时0.5S。 数据计算 计算方法如下： 计数频率：4MHz * 1/4 * 1/8 = 1/8 MHz 则计数周期为：8uS 由于代码中设置每延迟0.5S，LED引脚电位取反来切换状态。所以要使计数器累计计数0.5S： 计数器次数= 0.5S/8uS = 62500次 ...
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>
   </div>

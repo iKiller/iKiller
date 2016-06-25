@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="/wind7pi-chu-li-she-zhi-ipbatchjiao-ben.html" />
+
+    <title>  jiangtao &mdash; wind7批处理设置IP（BATCH脚本）
+</title>
+
+
+
+
+    <link rel="stylesheet" href="/theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="jiangtao">
+    <meta name="description" content="说明：在x.x.x.x处填上自己的IP地址。保存成“.bat”文件，以管理员身份运行即可。 代码如下： @echo off :main cls echo 请按提示操作... echo. echo 1 STI-HUST echo 2 Dian-HUST-711 echo 3 DHCP echo 4 Exit echo. set /p choice= Input a number: echo. if "%choice%"=="1" goto ip_STI if "%choice%"=="2" goto ip_Dian711 if "%choice%"=="3 ...">
+  <meta name="tags" contents="wind7, ip, 批处理, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href=""><img src=https://avatars2.githubusercontent.com/u/3675980?v=3&s=400></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href="">jiangtao</a>
+      </h1>
+      <h3 class="header-text"></h3>
+      <ul class="header-menu list-inline">
+          <li><a class="nodec icon-mail-alt" href="mailto:taojiang0101@gmail.com"></a></li>
+          <li><a class="nodec icon-github" href="https://github.com/vnady"></a></li>
+          <li><a class="nodec icon-stackoverflow" href="http://stackoverflow.com/users/5523771/qingchen"></a></li>
+          <li><a class="nodec icon-twitter" href="https://twitter.com/taojiang0101"></a></li>
+          <li><a class="nodec icon-facebook" href="https://www.facebook.com/shawn.henson.125?ref=bookmarks"></a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/wind7pi-chu-li-she-zhi-ipbatchjiao-ben.html" title="Permalink to wind7批处理设置IP（BATCH脚本）">wind7批处理设置IP（BATCH脚本）</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/wind7pi-chu-li-she-zhi-ipbatchjiao-ben.html" title="2013-01-21T00:43:00+08:00">一 21 一月 2013</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="/category/wind7batch.html">wind7,batch</a>
+      </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/wind7.html">wind7</a>,             <a href="/tag/ip.html">ip</a>,             <a href="/tag/批处理.html">批处理</a>        </li>
+    </ul>
+    <div class="post-content">
+      <p>说明：在x.x.x.x处填上自己的IP地址。保存成“.bat”文件，以管理员身份运行即可。 代码如下：</p>
+<div class="highlight"><pre><span></span><span class="p">@</span><span class="k">echo</span> off
+<span class="p">:</span><span class="nl">main</span>
+<span class="k">cls</span>
+<span class="k">echo</span> 请按提示操作...
+<span class="k">echo</span>.
+<span class="k">echo</span> 1 STI-HUST
+<span class="k">echo</span> 2 Dian-HUST-711
+<span class="k">echo</span> 3 DHCP
+<span class="k">echo</span> 4 Exit
+<span class="k">echo</span>.
+<span class="k">set</span> <span class="k">/p</span> <span class="nv">choice</span><span class="p">=</span> Input a number:
+<span class="k">echo</span>.
+<span class="k">if</span> <span class="s2">&quot;</span><span class="nv">%choice%</span><span class="s2">&quot;</span><span class="o">==</span><span class="s2">&quot;1&quot;</span> <span class="k">goto</span> <span class="nl">ip_STI</span>
+<span class="k">if</span> <span class="s2">&quot;</span><span class="nv">%choice%</span><span class="s2">&quot;</span><span class="o">==</span><span class="s2">&quot;2&quot;</span> <span class="k">goto</span> <span class="nl">ip_Dian711</span>
+<span class="k">if</span> <span class="s2">&quot;</span><span class="nv">%choice%</span><span class="s2">&quot;</span><span class="o">==</span><span class="s2">&quot;3&quot;</span> <span class="k">goto</span> <span class="nl">ip_DHCP</span>
+<span class="k">if</span> <span class="s2">&quot;</span><span class="nv">%choice%</span><span class="s2">&quot;</span><span class="o">==</span><span class="s2">&quot;4&quot;</span> <span class="k">goto</span> <span class="nl">ip_Exit</span>
+<span class="k">goto</span> <span class="nl">main</span>
+<span class="p">:</span><span class="nl">ip_STI</span>
+<span class="k">echo</span> IP自动设置中...
+<span class="k">echo</span>.
+<span class="k">echo</span> 更新IP及子网掩码
+netsh interface ip set address name=<span class="s2">&quot;本地连接&quot;</span> source=static addr=x.x.x.x mask=x.x.x.x gateway=x.x.x.x gwmetric=1
+<span class="k">echo</span> 更新DNS服务器
+netsh interface ip set dns name=<span class="s2">&quot;本地连接&quot;</span> source=static addr=x.x.x.x register=PRIMARY
+netsh interface ip add dns name=<span class="s2">&quot;本地连接&quot;</span> addr=x.x.x.x
+<span class="k">echo</span> 设置完成
+<span class="k">pause</span>
+<span class="k">exit</span>
+<span class="k">if</span> <span class="k">errorlevel</span> <span class="mi">2</span> <span class="k">goto</span> <span class="nl">main</span>
+<span class="k">if</span> <span class="k">errorlevel</span> <span class="mi">1</span> <span class="k">goto</span> <span class="nl">end</span>
+
+<span class="p">:</span><span class="nl">ip_Dian711</span>
+<span class="k">echo</span> IP自动设置中...
+<span class="k">echo</span>.
+<span class="k">echo</span> 更新IP及子网掩码
+netsh interface ip set address name=<span class="s2">&quot;本地连接&quot;</span> source=static addr=x.x.x.x mask=x.x.x.x gateway=x.x.x.x gwmetric=1
+<span class="k">echo</span> 更新DNS服务器
+netsh interface ip set dns name=<span class="s2">&quot;本地连接&quot;</span> source=static addr=x.x.x.x register=PRIMARY
+netsh interface ip add dns name=<span class="s2">&quot;本地连接&quot;</span> addr=x.x.x.x
+<span class="k">echo</span> 设置完成
+<span class="k">pause</span>
+<span class="k">exit</span>
+<span class="k">if</span> <span class="k">errorlevel</span> <span class="mi">2</span> <span class="k">goto</span> <span class="nl">main</span>
+<span class="k">if</span> <span class="k">errorlevel</span> <span class="mi">1</span> <span class="k">goto</span> <span class="nl">end</span>
+
+<span class="p">:</span><span class="nl">ip_DHCP</span>
+netsh interface ip set address name=<span class="s2">&quot;本地连接&quot;</span> source=dhcp
+netsh interface ip set dns name=<span class="s2">&quot;本地连接&quot;</span> source=dhcp
+netsh interface ip set wins name=<span class="s2">&quot;本地连接&quot;</span> source=dhcp
+<span class="k">echo</span> 设置完成
+<span class="k">pause</span>
+<span class="k">exit</span>
+<span class="k">if</span> <span class="k">errorlevel</span> <span class="mi">2</span> <span class="k">goto</span> <span class="nl">main</span>
+<span class="k">if</span> <span class="k">errorlevel</span> <span class="mi">1</span> <span class="k">goto</span> <span class="nl">end</span>
+
+<span class="p">:</span><span class="nl">ip_Exit</span>
+<span class="k">exit</span>
+</pre></div>
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      jiangtao, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="/theme/js/jquery.min.js"></script>
+  <script src="/theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>
