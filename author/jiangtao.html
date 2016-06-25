@@ -308,6 +308,26 @@
           </div>
         </div>
       </div>
+      <div class="post mini-post">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="post-date">
+              <a class="text-muted" href="/calloche-malloc.html" title="2013-02-28T16:34:00+08:00">四 28 二月 2013</a>
+            </p>
+            <p class="post-category">
+              <a href="/category/cc.html">c/c++</a>
+            </p>
+          </div>
+          <div class="col-md-8">
+            <h2 class="post-title">
+              <a href="/calloche-malloc.html" title="Permalink to calloc和malloc">calloc和malloc</a>
+            </h2>
+            <div class="post-content">
+              void *calloc(unsigned n,unsigned size)； 头文件为：stdlib.h 功 能: 在内存的动态存储区中分配n个长度为size的连续空间，函数返回一个指向分配起始地址的指针；如果分配不成功，返回NULL。 跟malloc的区别： calloc在动态分配完内存后，自动初始化该内存空间为零，而malloc不初始化，里边数据是随机的垃圾数据。并且malloc申请的内存可以是不连续的，而calloc申请的内存空间必须是连续的。 calloc代码： ...
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>
   </div>
