@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="/pic16f883he-tlc5615dashu-mo-zhuan-hua-shi-yan-hu-xi-deng.html" />
+
+    <title>  jiangtao &mdash; PIC16F883和TLC5615（DA）数模转化实验，呼吸灯
+</title>
+
+
+
+
+    <link rel="stylesheet" href="/theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="jiangtao">
+    <meta name="description" content="器材：PIC16F883控制芯片、TLC5615、LED灯一个、电阻一个（1K）、PICkit2下载器 实验说明，本实验采用I/O模拟方法实现数模转换，转换结果输出到LED引脚。LED呈现呼吸似的缓慢闪烁。 实验电路图： RC3连接SCLK、RC5连接Din、RC2连接CS。 输入DA的数字从0加到1024（DA为10位），再从1024减到0。中间最亮的时候做了一点儿延时。 LED灯接一个电阻到地，另一端接DA的模拟输出引脚。 实验中比较重要的时序图： 根据这个时序图，我周期性的给引脚的电位置1和置0。 源代码如下： #include<htc.h> #define uchar unsigned char #define uint unsigned int #define CLK RC3 #define DATA_IN RC5 #define CS RC2 void delay(uint x ...">
+  <meta name="tags" contents="pic16f883, DAC, TLC5615, 呼吸灯，数模转换, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href=""><img src=https://avatars2.githubusercontent.com/u/3675980?v=3&s=400></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href="">jiangtao</a>
+      </h1>
+      <h3 class="header-text"></h3>
+      <ul class="header-menu list-inline">
+          <li><a class="nodec icon-mail-alt" href="mailto:taojiang0101@gmail.com"></a></li>
+          <li><a class="nodec icon-github" href="https://github.com/vnady"></a></li>
+          <li><a class="nodec icon-stackoverflow" href="http://stackoverflow.com/users/5523771/qingchen"></a></li>
+          <li><a class="nodec icon-twitter" href="https://twitter.com/taojiang0101"></a></li>
+          <li><a class="nodec icon-facebook" href="https://www.facebook.com/shawn.henson.125?ref=bookmarks"></a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/pic16f883he-tlc5615dashu-mo-zhuan-hua-shi-yan-hu-xi-deng.html" title="Permalink to PIC16F883和TLC5615（DA）数模转化实验，呼吸灯">PIC16F883和TLC5615（DA）数模转化实验，呼吸灯</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/pic16f883he-tlc5615dashu-mo-zhuan-hua-shi-yan-hu-xi-deng.html" title="2012-07-06T00:19:00+08:00">五 06 七月 2012</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="/category/mucdac.html">muc,DAC</a>
+      </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/pic16f883.html">pic16f883</a>,             <a href="/tag/DAC.html">DAC</a>,             <a href="/tag/TLC5615.html">TLC5615</a>,             <a href="/tag/呼吸灯，数模转换.html">呼吸灯，数模转换</a>        </li>
+    </ul>
+    <div class="post-content">
+      <p>器材：PIC16F883控制芯片、TLC5615、LED灯一个、电阻一个（1K）、PICkit2下载器
+实验说明，本实验采用I/O模拟方法实现数模转换，转换结果输出到LED引脚。LED呈现呼吸似的缓慢闪烁。</p>
+<h4>实验电路图：</h4>
+<p><img src="http://static.oschina.net/uploads/space/2012/0706/000802_06G5_185037.png">
+RC3连接SCLK、RC5连接Din、RC2连接CS。
+输入DA的数字从0加到1024（DA为10位），再从1024减到0。中间最亮的时候做了一点儿延时。
+LED灯接一个电阻到地，另一端接DA的模拟输出引脚。</p>
+<h4>实验中比较重要的时序图：</h4>
+<p><img src="http://static.oschina.net/uploads/space/2012/0706/001439_hNfo_185037.png"></p>
+<p>根据这个时序图，我周期性的给引脚的电位置1和置0。</p>
+<h4>源代码如下：</h4>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;htc.h&gt;</span><span class="cp"></span>
+<span class="cp">#define uchar unsigned char</span>
+<span class="cp">#define uint unsigned int</span>
+<span class="cp">#define CLK RC3</span>
+<span class="cp">#define DATA_IN RC5</span>
+<span class="cp">#define CS RC2</span>
+<span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="n">uint</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">uint</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">--</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="mh">0x00ff</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">b</span><span class="o">--</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="mh">0x00ff</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">a</span><span class="o">--</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">uint</span> <span class="n">i</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">kp</span><span class="p">;</span>
+    <span class="n">TRISC</span><span class="o">=</span><span class="mh">0x00</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="n">delay</span><span class="p">(</span><span class="n">uint</span> <span class="n">x</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+        <span class="n">CS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">CLK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">kp</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+        <span class="n">kp</span><span class="o">&lt;&lt;=</span><span class="mi">4</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">--</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">temp</span><span class="o">=</span><span class="n">kp</span><span class="o">&amp;</span><span class="mh">0x8000</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">DATA_IN</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">DATA_IN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>       
+            <span class="n">CLK</span>  <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">kp</span><span class="o">&lt;&lt;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">CLK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">CS</span>  <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">CLK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">k</span><span class="o">==</span><span class="mh">0x0fff</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">k</span><span class="o">--</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+                <span class="n">CS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="n">CLK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="n">kp</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+                <span class="n">kp</span><span class="o">&lt;&lt;=</span><span class="mi">4</span><span class="p">;</span>
+                <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">--</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">temp</span> <span class="o">=</span> <span class="n">kp</span><span class="o">&amp;</span><span class="mh">0x8000</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="p">{</span>                         
+                        <span class="n">DATA_IN</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="p">}</span>                    
+                    <span class="k">else</span> 
+                    <span class="p">{</span>
+                        <span class="n">DATA_IN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                    <span class="p">}</span>                     
+                    <span class="n">CLK</span>  <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                     
+                    <span class="n">kp</span><span class="o">&lt;&lt;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                     
+                    <span class="n">CLK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                 
+                <span class="p">}</span>                                 
+                <span class="n">CS</span>  <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                 
+                <span class="n">CLK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>             
+            <span class="p">}</span>                     
+            <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>         
+        <span class="p">}</span>     
+    <span class="p">}</span> 
+<span class="p">}</span>
+</pre></div>
+
+
+<p>可以在每完成一个数据的输入后来一个延时来减慢LED灯的亮灭速度。看起来就是呼吸的效果。</p>
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      jiangtao, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="/theme/js/jquery.min.js"></script>
+  <script src="/theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>
