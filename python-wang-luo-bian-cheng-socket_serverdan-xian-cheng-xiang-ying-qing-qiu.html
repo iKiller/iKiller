@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="刚开始接触python网络编程，使用socket编写一个简单的单线程server。socket模块提供了一个工厂函数，也被称为socket，开发者可以调用函数以生成一个套接字对象S。要想执行网络层操作，可以调用S上的方法。在客户程序中，可以调用S.connect连接到一个服务器。在服务器程序中，可以调用S.bind和S.listen等待客户程序的连接。在客户程序请求连接时，服务器程序可以调用S.accept接受请求，该方法将返回连接到客户程序的另一个套接字对象S1.在有了一个连接的套接字对象之后，就可以调用该对象的send方法传输数据，调用该对象的recv方法接收数据了。关于socket模块提供的函数和socket对象提供的方法请读者参阅python相关的技术书籍（例如《python技术手册》）。 分三步： - 创建模块对象 - 创建模块对象的属性 - 调用模块对象的方法完成模块所想要实现的功能 源代码如下： #import socket module from socket import * serverSocket = socket(AF_INET, SOCK_STREAM) serverSocket.bind(('',8000 ...">
+    <meta name="description" content="刚开始接触python网络编程，使用socket编写一个简单的单线程server。socket模块提供了一个工厂函数，也被称为socket，开发者可以调用函数以生成一个套接字对象S。要想执行网络层操作，可以调用S上的方法。在客户程序中，可以调用S.connect连接到一个服务器。在服务器程序中，可以调用S.bind和S.listen等待客户程序的连接。在客户程序请求连接时，服务器程序可以调用S.accept接受请求，该方法将返回连接到客户程序的另一个套接字对象S1.在有了一个连接的套接字对象之后，就可以调用该对象的send方法传输数据，调用该对象的recv方法接收数据了。关于socket模块提供的函数和socket对象提供的方法请读者参阅python相关的技术书籍（例如《python技术手册》）。 分三步： 创建模块对象 创建模块对象的属性 调用模块对象的方法完成模块所想要实现的功能 源代码如下： #import socket module from socket import * serverSocket = socket(AF_INET, SOCK_STREAM) serverSocket.bind(('',8000 ...">
   <meta name="tags" contents="socket, 单线程, server, network, ">
 </head>
 
@@ -65,10 +65,12 @@
     </ul>
     <div class="post-content">
       <p>刚开始接触python网络编程，使用socket编写一个简单的单线程server。socket模块提供了一个工厂函数，也被称为socket，开发者可以调用函数以生成一个套接字对象S。要想执行网络层操作，可以调用S上的方法。在客户程序中，可以调用<code>S.connect</code>连接到一个服务器。在服务器程序中，可以调用<code>S.bind</code>和<code>S.listen</code>等待客户程序的连接。在客户程序请求连接时，服务器程序可以调用<code>S.accept</code>接受请求，该方法将返回连接到客户程序的另一个套接字对象S1.在有了一个连接的套接字对象之后，就可以调用该对象的send方法传输数据，调用该对象的recv方法接收数据了。关于socket模块提供的函数和socket对象提供的方法请读者参阅python相关的技术书籍（例如《python技术手册》）。</p>
-<p>分三步：
-- 创建模块对象
-- 创建模块对象的属性
-- 调用模块对象的方法完成模块所想要实现的功能</p>
+<p>分三步：</p>
+<ul>
+<li>创建模块对象</li>
+<li>创建模块对象的属性</li>
+<li>调用模块对象的方法完成模块所想要实现的功能</li>
+</ul>
 <p>源代码如下：</p>
 <div class="highlight"><pre><span></span><span class="c1">#import socket module</span>
 <span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="o">*</span>                  
