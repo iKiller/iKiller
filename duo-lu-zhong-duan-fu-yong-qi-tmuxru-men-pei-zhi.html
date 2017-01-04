@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="tmux 是一个优秀的终端复用软件，类似 GNU Screen ，但来自于 OpenBSD ，采用 BSD 授权。使用它最直观的好处就是，通过一个终端登录远程主机并运行 tmux 后，在其中可以开启多个控制台而无需再“浪费”多余的终端来连接这台远程主机；当然其功能远不止于此。 [百度百科介绍] 我的配置文件主要进行如下定制： 修改 prefix 键为 C-a 分屏快捷键为 | - 窗格选择移动键与 vim 移动键一致 窗格尺寸调整，边界移动键 GHJK （与 vim 移动键一致，只是变成大写） 状态栏设置 使能鼠标操作 配置文件.tmux.conf unbind C-b set -g prefix C-a bind-key C-a send-prefix bind ...">
+    <meta name="description" content="tmux 是一个优秀的终端复用软件，类似 GNU Screen ，但来自于 OpenBSD ，采用 BSD 授权。使用它最直观的好处就是，通过一个终端登录远程主机并运行 tmux 后，在其中可以开启多个控制台而无需再“浪费”多余的终端来连接这台远程主机；当然其功能远不止于此。 [百度百科介绍] 我的配置文件主要进行如下定制： 修改 prefix 键为 C-a 分屏快捷键为 | - 窗格选择移动键与 vim 移动键一致 窗格尺寸调整，边界移动键 GHJK (与 vim 移动键一致，只是变成大写) （已删除，鼠标调整大小更方便） 状态栏设置 使能鼠标操作 配置文件 .tmux.conf unbind C-b set -g prefix C-a bind-key C-a ...">
   <meta name="tags" contents="tmux, linux, terminal, vim, ">
 </head>
 
@@ -77,7 +77,7 @@
 <p>窗格选择移动键与 vim 移动键一致</p>
 </li>
 <li>
-<p>窗格尺寸调整，边界移动键 GHJK （与 vim 移动键一致，只是变成大写）</p>
+<p>窗格尺寸调整，边界移动键 GHJK (与 vim 移动键一致，只是变成大写) （<font color="red" size=3>已删除，鼠标调整大小更方便</font>）</p>
 </li>
 <li>
 <p>状态栏设置</p>
@@ -86,7 +86,7 @@
 <p>使能鼠标操作</p>
 </li>
 </ul>
-<p><strong>配置文件.tmux.conf</strong></p>
+<p><strong>配置文件   .tmux.conf</strong></p>
 <div class="highlight"><pre><span></span>unbind C-b
 set -g prefix C-a
 bind-key C-a send-prefix
@@ -108,7 +108,7 @@ bind j selectp -D # below (prefix j)
 bind h selectp -L # left (prefix h)
 bind l selectp -R # right (prefix l)
 
-# resize pane
+# resize pane（已删除，鼠标调整大小更方便）
 bind -r K resizep -U 10 # upward (prefix Ctrl+k)
 bind -r J resizep -D 10 # downward (prefix Ctrl+j)
 bind -r H resizep -L 10 # to the left (prefix Ctrl+h)
@@ -142,7 +142,14 @@ bind -n WheelDownPane select-pane -t= \; send-keys -M
 </pre></div>
 
 
-<p><a href="https://github.com/tmux/tmux/issues/145#issuecomment-151123624">Github相关讨论...</a></p>
+<ul>
+<li>插件推荐<blockquote>
+<p>TPM 插件管理工具，安装使用说明见下面github列表</p>
+<p>tmux-resurrect 会话保存恢复工具，很方便，安装使用说明见下面github列表</p>
+</blockquote>
+</li>
+</ul>
+<p><a href="https://github.com/tmux-plugins">Github插件列表...</a></p>
     </div>
   </div>
   <hr class="separator">
