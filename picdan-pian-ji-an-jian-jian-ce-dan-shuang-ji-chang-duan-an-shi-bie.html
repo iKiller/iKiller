@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="硬件PIC16F883芯片，10个按键，4位数码管。 芯片引脚图 数码管连接 PORTC连接数码管的8段LED，PORTA<3:0>连接数码管的4个共阴极（控制选通位）。 按键连接图 按键扫描程序在上一篇博文里面有说明，现在还是使用上面的扫面方式（代码都是一样的）。用记录按键按下和弹起的时间判断是不是长按和双击。TMR1设置，1:4分频、1:8预分频，计数周期为8uS。TMR1溢出一次时间为0.524288 S keypress记录TMR1溢出的次数。keypress大于等于2就跳出检测，认为他是长按（时间为1.048576S）。keypress\<1 且keyrelease>1 ，再次按下的keypress\<1就认为是双击。如下图： KP按键按下，KR按键弹起。 实现代码 #include<p16f883.inc> __CONFIG _CONFIG1, _LVP_OFF & _FCMEN_ON & _IESO_OFF & _BOR_OFF & _CPD_OFF ...">
+    <meta name="description" content="硬件PIC16F883芯片，10个按键，4位数码管。 芯片引脚图 数码管连接 PORTC连接数码管的8段LED，PORTA<3:0>连接数码管的4个共阴极（控制选通位）。 按键连接图 按键扫描程序在上一篇博文里面有说明，现在还是使用上面的扫面方式（代码都是一样的）。用记录按键按下和弹起的时间判断是不是长按和双击。TMR1设置，1:4分频、1:8预分频，计数周期为8uS。TMR1溢出一次时间为0.524288 S keypress记录TMR1溢出的次数。keypress大于等于2就跳出检测，认为他是长按（时间为1.048576S）。keypress\<1 且keyrelease>1 ，再次按下的keypress\<1就认为是双击。如下图： KP按键按下，KR按键弹起。 实现代码 #include<p16f883.inc> __CONFIG _CONFIG1, _LVP_OFF & _FCMEN_ON & _IESO_OFF & _BOR_OFF & _CPD_OFF …">
   <meta name="tags" contents="mcu, 按键检测, pic16f883, 数码管, 双击识别, ">
 </head>
 

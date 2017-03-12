@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="How would you print just the 10th line of a file with the shell script? Shell script is as below: #!/bin/bash k=0 while IFS='' read -r line || [[ -n "$line" ]] do ((k++)) if [ $k -eq 10 ] then echo "Text read from file: $line" fi done < "$1" If you read ...">
+    <meta name="description" content="How would you print just the 10th line of a file with the shell script? Shell script is as below: #!/bin/bash k=0 while IFS='' read -r line || [[ -n "$line" ]] do ((k++)) if [ $k -eq 10 ] then echo "Text read from file: $line" fi done < "$1" If you read …">
   <meta name="tags" contents="shell, linux, unix, bash, ">
 </head>
 
@@ -68,7 +68,7 @@
 Shell script is as below:</p>
 
 <div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="nv">k</span><span class="o">=</span>0
+<span class="nv">k</span><span class="o">=</span><span class="m">0</span>
 <span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="nb">read</span> -r line <span class="o">||</span> <span class="o">[[</span> -n <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span> <span class="o">]]</span>
 <span class="k">do</span>
     <span class="o">((</span>k++<span class="o">))</span>

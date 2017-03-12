@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="创建一个能接受客户端消息，在消息前加一个时间戳后返回的TCP服务器。 tsTclnt.py #!/usr/bin/env python from socket import * from time import ctime HOST='' PORT=21567 BUFSIZ = 1024 ADDR = (HOST, PORT) tcpSerSock = socket(AF_INET, SOCK_STREAM) tcpSerSock.bind(ADDR) tcpSerSock.listen(5) while True: print 'waiting for connection...' tcpCliSock, addr = tcpSerSock.accept() print '...conneted from:', addr while True: data ...">
+    <meta name="description" content="创建一个能接受客户端消息，在消息前加一个时间戳后返回的TCP服务器。 tsTclnt.py #!/usr/bin/env python from socket import * from time import ctime HOST='' PORT=21567 BUFSIZ = 1024 ADDR = (HOST, PORT) tcpSerSock = socket(AF_INET, SOCK_STREAM) tcpSerSock.bind(ADDR) tcpSerSock.listen(5) while True: print 'waiting for connection...' tcpCliSock, addr = tcpSerSock.accept() print '...conneted from:', addr while True: data …">
   <meta name="tags" contents="socket, tcp, ">
 </head>
 
@@ -96,7 +96,7 @@
 </pre></div>
 
 
-<hr />
+<hr>
 <p>创建一个TCP客户端。</p>
 <p><font color='ff8000'>tsTclnt.py</font></p>
 <div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
@@ -131,7 +131,7 @@
 $ tsTclnt.py
 &gt; hi
 [Tue Jun 21 21:22:42 2016] hi
-&gt; 南二舍 <br />
+&gt; 南二舍 <br>
 [Tue Jun 21 21:23:21 2016] 南二舍
 &gt;
 $

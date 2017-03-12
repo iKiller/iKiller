@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="设置 设置python vim module，在vimrc文件中添加如下几行 python << EOF import os import sys import vim for p in sys.path: if os.path.isdir(p): vim.command(r"set path+=%" % (p.replace(" ", r"\ "))) EOF 准备tags文件 运行ctags，生成tags文件，举例： $ctags -R -f ~/.vim/tags/python.tags /usr/lib/python2.7/ 如果你在多个地方有python文件，使用-a ...">
+    <meta name="description" content="设置 设置python vim module，在vimrc文件中添加如下几行 python << EOF import os import sys import vim for p in sys.path: if os.path.isdir(p): vim.command(r"set path+=%" % (p.replace(" ", r"\ "))) EOF 准备tags文件 运行ctags，生成tags文件，举例： $ctags -R -f ~/.vim/tags/python.tags /usr/lib/python2.7/ 如果你在多个地方有python文件，使用-a …">
   <meta name="tags" contents="Linux, mac, vim, ">
 </head>
 
@@ -74,7 +74,7 @@
 <span class="kn">import</span> <span class="nn">vim</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-        <span class="n">vim</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">r&quot;set path+=%&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">r&quot;\ &quot;</span><span class="p">)))</span>
+        <span class="n">vim</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;set path+=%&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\ &quot;</span><span class="p">)))</span>
 <span class="n">EOF</span>
 </pre></div>
 

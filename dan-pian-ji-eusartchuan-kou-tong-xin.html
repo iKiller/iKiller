@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="在两个单片机之间建立串口通信。 说明：我们使用数码管显示接收到的数据，数据是对方的按键编号。 硬件连接图： 有一点至关重要，就是两个单片机要共地。发送和接收引脚在两个单片机上交叉相连。 这里采用的是异步发送和接收。 发送原理图： EUSART接收图： 时序图: 软件流程图： 软件源码： #include<p16f883.inc> __CONFIG _CONFIG1, _LVP_OFF & _FCMEN_ON & _IESO_OFF & _BOR_OFF & _CPD_OFF & _CP_OFF & _MCLRE_ON & _PWRTE_ON & _WDT_OFF & _INTRC_OSC_NOCLKOUT __CONFIG _CONFIG2, _WRT_OFF & _BOR21V udata_shr counter res 1 counter1 res 1 ;扫描按键变量 counter2 res 1 ;延时程序微调参数 key_state res 1 ;按键状态 keynum ...">
+    <meta name="description" content="在两个单片机之间建立串口通信。 说明：我们使用数码管显示接收到的数据，数据是对方的按键编号。 硬件连接图： 有一点至关重要，就是两个单片机要共地。发送和接收引脚在两个单片机上交叉相连。 这里采用的是异步发送和接收。 发送原理图： EUSART接收图： 时序图: 软件流程图： 软件源码： #include<p16f883.inc> __CONFIG _CONFIG1, _LVP_OFF & _FCMEN_ON & _IESO_OFF & _BOR_OFF & _CPD_OFF & _CP_OFF & _MCLRE_ON & _PWRTE_ON & _WDT_OFF & _INTRC_OSC_NOCLKOUT __CONFIG _CONFIG2, _WRT_OFF & _BOR21V udata_shr counter res 1 counter1 res 1 ;扫描按键变量 counter2 res 1 ;延时程序微调参数 key_state res 1 ;按键状态 keynum …">
   <meta name="tags" contents="EUSART, 串口通信, 单片机, pic16f883, 双向数据传输, ">
 </head>
 

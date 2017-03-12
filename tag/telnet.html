@@ -63,7 +63,7 @@
               <a href="/linux-an-zhuang-telnet.html" title="Permalink to Linux 安装 Telnet">Linux 安装 Telnet</a>
             </h2>
             <div class="post-content">
-              linux默认是不安装telnet的，默认使用ssh服务。 首先，查看一下有没有安装telnet及相关的服务软件： 第一步： :rpm -qa |grep telnet :rpm -qa |grep xinetd 如果不存在就使用如下命令安装： :yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机) 第二步： 安装好之后，需要修改一下telnet的设置： :vim /etc/xinetd.d/telnet ...
+              linux默认是不安装telnet的，默认使用ssh服务。 首先，查看一下有没有安装telnet及相关的服务软件： 第一步： :rpm -qa |grep telnet :rpm -qa |grep xinetd 如果不存在就使用如下命令安装： :yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机) 第二步： 安装好之后，需要修改一下telnet的设置： :vim /etc/xinetd.d/telnet...
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="题目：判断一个整数是否是4的幂。 测试举例: 输入16，返回true；输入5，返回false。 选择用python实现： ass Solution(object): def isPowerOfFour(self, num): """ :type num: int :rtype: bool """ import math num_sqrt = int(math.sqrt(float(num))) a = int(math.log(num_sqrt)/math.log(2)) return num == num_sqrt*math.pow(2, a) 通过分析可以发现2的偶数次幂就应该返回true，否则返回false。进行二进制转换就会发现奥秘，随后就看到了讨论区id为 ...">
+    <meta name="description" content="题目：判断一个整数是否是4的幂。 测试举例: 输入16，返回true；输入5，返回false。 选择用python实现： ass Solution(object): def isPowerOfFour(self, num): """ :type num: int :rtype: bool """ import math num_sqrt = int(math.sqrt(float(num))) a = int(math.log(num_sqrt)/math.log(2)) return num == num_sqrt*math.pow(2, a) 通过分析可以发现2的偶数次幂就应该返回true，否则返回false。进行二进制转换就会发现奥秘，随后就看到了讨论区id为 …">
   <meta name="tags" contents="math, bin, ">
 </head>
 

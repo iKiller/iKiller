@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="本实验实现了一个server同时响应多个client的字符回显。 Server端代码kqueue-socket.py #!/usr/bin/env python import socket, select HOST = 'localhost' PORT = 5000 ADDR = (HOST, PORT) serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) serversocket.bind(ADDR) serversocket.listen(1) serversocket.setblocking(0) kqueue = select.kqueue() kevents = [select.kevent(serversocket.fileno(), filter=select ...">
+    <meta name="description" content="本实验实现了一个server同时响应多个client的字符回显。 Server端代码kqueue-socket.py #!/usr/bin/env python import socket, select HOST = 'localhost' PORT = 5000 ADDR = (HOST, PORT) serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) serversocket.bind(ADDR) serversocket.listen(1) serversocket.setblocking(0) kqueue = select.kqueue() kevents = [select.kevent(serversocket.fileno(), filter=select …">
   <meta name="tags" contents="socket, tcp, select, kqueue, ">
 </head>
 

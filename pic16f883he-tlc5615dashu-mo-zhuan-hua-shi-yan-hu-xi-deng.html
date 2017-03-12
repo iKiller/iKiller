@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="器材：PIC16F883控制芯片、TLC5615、LED灯一个、电阻一个（1K）、PICkit2下载器 实验说明，本实验采用I/O模拟方法实现数模转换，转换结果输出到LED引脚。LED呈现呼吸似的缓慢闪烁。 实验电路图： RC3连接SCLK、RC5连接Din、RC2连接CS。 输入DA的数字从0加到1024（DA为10位），再从1024减到0。中间最亮的时候做了一点儿延时。 LED灯接一个电阻到地，另一端接DA的模拟输出引脚。 实验中比较重要的时序图： 根据这个时序图，我周期性的给引脚的电位置1和置0。 源代码如下： #include<htc.h> #define uchar unsigned char #define uint unsigned int #define CLK RC3 #define DATA_IN RC5 #define CS RC2 void delay(uint x ...">
+    <meta name="description" content="器材：PIC16F883控制芯片、TLC5615、LED灯一个、电阻一个（1K）、PICkit2下载器 实验说明，本实验采用I/O模拟方法实现数模转换，转换结果输出到LED引脚。LED呈现呼吸似的缓慢闪烁。 实验电路图： RC3连接SCLK、RC5连接Din、RC2连接CS。 输入DA的数字从0加到1024（DA为10位），再从1024减到0。中间最亮的时候做了一点儿延时。 LED灯接一个电阻到地，另一端接DA的模拟输出引脚。 实验中比较重要的时序图： 根据这个时序图，我周期性的给引脚的电位置1和置0。 源代码如下： #include<htc.h> #define uchar unsigned char #define uint unsigned int #define CLK RC3 #define DATA_IN RC5 #define CS RC2 void delay(uint x …">
   <meta name="tags" contents="pic16f883, DAC, TLC5615, 呼吸灯，数模转换, ">
 </head>
 

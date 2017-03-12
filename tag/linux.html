@@ -63,7 +63,7 @@
               <a href="/ctagspython-vim-work-for-autocompletetag-jump.html" title="Permalink to ctags&python-vim work for autocomplete&tag-jump">ctags&python-vim work for autocomplete&tag-jump</a>
             </h2>
             <div class="post-content">
-              设置 设置python vim module，在vimrc文件中添加如下几行 python << EOF import os import sys import vim for p in sys.path: if os.path.isdir(p): vim.command(r"set path+=%" % (p.replace(" ", r"\ "))) EOF 准备tags文件 运行ctags，生成tags文件，举例： $ctags -R -f ~/.vim/tags/python.tags ...
+              设置 设置python vim module，在vimrc文件中添加如下几行 python << EOF import os import sys import vim for p in sys.path: if os.path.isdir(p): vim.command(r"set path+=%" % (p.replace(" ", r"\ "))) EOF 准备tags文件 运行ctags，生成tags文件，举例： $ctags -R -f ~/.vim/tags/python.tags...
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@
               <a href="/duo-lu-zhong-duan-fu-yong-qi-tmuxru-men-pei-zhi.html" title="Permalink to 多路终端复用器tmux入门配置">多路终端复用器tmux入门配置</a>
             </h2>
             <div class="post-content">
-              tmux 是一个优秀的终端复用软件，类似 GNU Screen ，但来自于 OpenBSD ，采用 BSD 授权。使用它最直观的好处就是，通过一个终端登录远程主机并运行 tmux 后，在其中可以开启多个控制台而无需再“浪费”多余的终端来连接这台远程主机；当然其功能远不止于此。 [百度百科介绍] 我的配置文件主要进行如下定制： 修改 prefix 键为 C-a 分屏快捷键为 | - 窗格选择移动键与 vim 移动键一致 窗格尺寸调整，边界移动键 GHJK (与 vim 移动键一致，只是变成大写) ...
+              tmux 是一个优秀的终端复用软件，类似 GNU Screen ，但来自于 OpenBSD ，采用 BSD 授权。使用它最直观的好处就是，通过一个终端登录远程主机并运行 tmux 后，在其中可以开启多个控制台而无需再“浪费”多余的终端来连接这台远程主机；当然其功能远不止于此。 [百度百科介绍] 我的配置文件主要进行如下定制： 修改 prefix 键为 C-a 分屏快捷键为 | - 窗格选择移动键与 vim 移动键一致 窗格尺寸调整，边界移动键 GHJK (与 vim 移动键一致，只是变成大写)...
             </div>
           </div>
         </div>
@@ -143,7 +143,7 @@
               <a href="/valid-phone-numbers-with-shell-script.html" title="Permalink to Valid Phone Numbers with shell script">Valid Phone Numbers with shell script</a>
             </h2>
             <div class="post-content">
-              Valid phone numbers must appear in one of the following two formats: (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit) Given a text file file.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone ...
+              Valid phone numbers must appear in one of the following two formats: (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit) Given a text file file.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone...
             </div>
           </div>
         </div>
@@ -163,7 +163,7 @@
               <a href="/shell-script-to-read-lines-from-file.html" title="Permalink to shell script to read lines from file">shell script to read lines from file</a>
             </h2>
             <div class="post-content">
-              How would you print just the 10th line of a file with the shell script? Shell script is as below: #!/bin/bash k=0 while IFS='' read -r line || [[ -n "$line" ]] do ((k++)) if [ $k -eq 10 ] then echo "Text read from file: $line" fi done < "$1" If you ...
+              How would you print just the 10th line of a file with the shell script? Shell script is as below: #!/bin/bash k=0 while IFS='' read -r line || [[ -n "$line" ]] do ((k++)) if [ $k -eq 10 ] then echo "Text read from file: $line" fi done < "$1" If you...
             </div>
           </div>
         </div>
@@ -183,7 +183,7 @@
               <a href="/shell-script-to-evaluate-expression.html" title="Permalink to shell script to evaluate expression">shell script to evaluate expression</a>
             </h2>
             <div class="post-content">
-              To evaluate expressions involving decimal places (floating points) "bc -l" is very useful. Your task is to evaluate the expression and display the output correct to decimal places. Shell script is as below: #!/bin/bash read expression printf "%.3f\n" ...
+              To evaluate expressions involving decimal places (floating points) "bc -l" is very useful. Your task is to evaluate the expression and display the output correct to decimal places. Shell script is as below: #!/bin/bash read expression printf "%.3f\n"...
             </div>
           </div>
         </div>
@@ -203,7 +203,7 @@
               <a href="/linux-an-zhuang-telnet.html" title="Permalink to Linux 安装 Telnet">Linux 安装 Telnet</a>
             </h2>
             <div class="post-content">
-              linux默认是不安装telnet的，默认使用ssh服务。 首先，查看一下有没有安装telnet及相关的服务软件： 第一步： :rpm -qa |grep telnet :rpm -qa |grep xinetd 如果不存在就使用如下命令安装： :yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机) 第二步： 安装好之后，需要修改一下telnet的设置： :vim /etc/xinetd.d/telnet ...
+              linux默认是不安装telnet的，默认使用ssh服务。 首先，查看一下有没有安装telnet及相关的服务软件： 第一步： :rpm -qa |grep telnet :rpm -qa |grep xinetd 如果不存在就使用如下命令安装： :yum install xinetd telnet-server telnet-client(这个可选，从本机使用telnet登陆其他主机) 第二步： 安装好之后，需要修改一下telnet的设置： :vim /etc/xinetd.d/telnet...
             </div>
           </div>
         </div>

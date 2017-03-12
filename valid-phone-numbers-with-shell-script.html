@@ -22,7 +22,7 @@
 
 
     <meta name="author" content="jiangtao">
-    <meta name="description" content="Valid phone numbers must appear in one of the following two formats: (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit) Given a text file file.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers. #!/bin/bash while ...">
+    <meta name="description" content="Valid phone numbers must appear in one of the following two formats: (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit) Given a text file file.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers. #!/bin/bash while …">
   <meta name="tags" contents="shell, bash, linux, regex, ">
 </head>
 
@@ -72,7 +72,7 @@ Given a text file file.txt that contains list of phone numbers (one per line), w
 <div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="nb">read</span> -r line <span class="o">||</span> <span class="o">[[</span> -n <span class="nv">$line</span> <span class="o">]]</span>
 <span class="k">do</span>
-    <span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span> <span class="o">=</span>~ ^<span class="o">[</span>0-9<span class="o">]{</span>3<span class="o">}</span>-<span class="o">[</span>0-9<span class="o">]{</span>3<span class="o">}</span>-<span class="o">[</span>0-9<span class="o">]{</span>4<span class="o">}</span>$<span class="p">|</span>^<span class="se">\(</span><span class="o">[</span>0-9<span class="o">]{</span>3<span class="o">}</span><span class="se">\)\ </span><span class="o">[</span>0-9<span class="o">]{</span>3<span class="o">}</span>-<span class="o">[</span>0-9<span class="o">]{</span>4<span class="o">}</span>$ <span class="o">]]</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span> <span class="o">=</span>~ ^<span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">3</span><span class="o">}</span>-<span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">3</span><span class="o">}</span>-<span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">4</span><span class="o">}</span>$<span class="p">|</span>^<span class="se">\(</span><span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">3</span><span class="o">}</span><span class="se">\)\ </span><span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">3</span><span class="o">}</span>-<span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">4</span><span class="o">}</span>$ <span class="o">]]</span>
     <span class="k">then</span>
         <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span>
     <span class="k">fi</span>
@@ -91,7 +91,7 @@ Given a text file file.txt that contains list of phone numbers (one per line), w
 <p>124-091
 </p>
 </blockquote>
-<hr />
+<hr>
 <blockquote>
 <p><strong>Code operation results:</strong></p>
 <p>1156-355-0923</p>
