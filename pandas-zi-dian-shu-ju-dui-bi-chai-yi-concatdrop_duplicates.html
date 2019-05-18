@@ -65,8 +65,8 @@
     </ul>
     <div class="post-content">
       <hr>
-<p>问题：要处理其他api推送的字典（每次都是全部字典推送）,业务只关心发生变化的字典项,需要获取变化的字典项
-开发环境: python==3.6.5, pandas==0.24.2, macOX, pycharm</p>
+<p>问题：要处理其他api推送的字典（每次都是全部字典推送）,业务只关心发生变化的字典项,需要获取变化的字典项</p>
+<p>开发环境: python==3.6.5, pandas==0.24.2, macOX, pycharm</p>
 <h3>pandas.DataFrame数据帧特点</h3>
 <ul>
 <li>潜在的列是不同的类型</li>
@@ -99,6 +99,7 @@ msg3
 </pre></div>
 
 
+<hr>
 <h3>消息2与消息1对比差异</h3>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span><span class="p">;</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Python </span><span class="si">%s</span><span class="s1"> on </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">))</span>
 <span class="n">Python</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">5</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">May</span> <span class="mi">22</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">48</span><span class="p">)</span>
@@ -137,6 +138,7 @@ msg3
 
 
 <p>结论：<code>消息2</code>把字典项数据<code>Al2O3</code>由空修改为<code>240</code></p>
+<hr>
 <h3>消息3与消息1对比差异</h3>
 <div class="highlight"><pre><span></span>&gt;&gt;&gt; pd.concat([df1.T, df3.T]).drop_duplicates(keep=False)
          0
@@ -147,7 +149,8 @@ SiO2    94
 </pre></div>
 
 
-<p>结论：<code>消息3</code>把字典数据<code>Al2O3</code>由空修改为<code>240</code>，把<code>SiO2</code>由<code>87</code>修改为<code>94</code></p>
+<p>结论：<code>消息3</code>把字典数据<code>Al2O3</code>由空修改为<code>240</code>，把<code>SiO2</code>由<code>87</code>修改为<code>94</code>。</p>
+<hr>
 <h3>消息3与消息2对比差异</h3>
 <div class="highlight"><pre><span></span>&gt;&gt;&gt; pd.concat([df2.T, df3.T]).drop_duplicates(keep=False)
        0
@@ -157,14 +160,17 @@ SiO2  94
 
 
 <p>结论：<code>消息3</code>把字典数据<code>SiO2</code>由<code>87</code>修改为<code>94</code></p>
-<h3>消息3相当于消息2对比差异，只保留消息3中的数据</h3>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; pd.concat([df3.T, df2.T, df2.T]).drop_duplicates(keep=False) # df2拼接了两次，df2里的数据项都会因为重复被删除，同时df3中与df2相同的数据项也会因重复被删除, df3中差异数据项无重复被保留
+<hr>
+<h3>消息3与消息2对比差异，只保留消息3中的数据</h3>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; pd.concat([df3.T, df2.T, df2.T]).drop_duplicates(keep=False) 
+# df2拼接了两次，df2里的数据项都会因为重复被删除，
+# 同时df3中与df2相同的数据项也会因重复被删除, df3中差异数据项无重复被保留
        0
 SiO2  94
 </pre></div>
 
 
-<p>结论：<code>消息3</code>把字典数据<code>SiO2</code>修改为94</p>
+<p>结论：<code>消息3</code>把字典数据<code>SiO2</code>修改为94，此时就可以用SiO2的94新值进行后续的业务处理了。</p>
     </div>
   </div>
   <hr class="separator">
