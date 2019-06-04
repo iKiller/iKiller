@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="/pandas-du-qu-sqlserver-bing-cun-chu-dao-mongodbread_sqlto_dict.html" />
+
+    <title>  jiangtao &mdash; pandas 读取 sqlserver, 并存储到 Mongodb(read_sql,to_dict)
+</title>
+
+
+
+
+    <link rel="stylesheet" href="/theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="jiangtao">
+    <meta name="description" content="问题：要从sqlserver同步数据到mongodb 开发环境: python==3.6.5, pandas==0.24.2, macOX, pycharm, pymongo==3.7.1 读取数据库数据到DataFrame的接口 pandas.read_sql(sql, con, index_col=None, coerce_float=True, params=None, parse_dates=None, columns=None, chunksize=None) 读取sql查询结果或者数据表到DataFrame 入参sql:可以是sql查询语句, 也可以是table名字 入参con:SQL可用连接或者数据库URI字符串(DBAPI2连接也支持,比较少见需特别留意接口描述) 读取sqlserver数据库遇到的问题 时间格式无法存储到mongodb NaN值无法存储到mongodb 解决办法分别是: 1. 存储到mongodb之前进行时间格式转换 …">
+  <meta name="tags" contents="pandas, sqlserver, dict, mongodb, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+      <div class="header-image pull-left">
+        <a class="nodec" href=""><img src=https://avatars2.githubusercontent.com/u/3675980?v=3&s=400></a>
+      </div>
+    <div class="header-inner">
+      <h1 class="header-name">
+        <a class="nodec" href="">jiangtao</a>
+      </h1>
+      <h3 class="header-text"></h3>
+      <ul class="header-menu list-inline">
+          <li><a class="nodec icon-mail-alt" href="mailto:taojiang0101@gmail.com"></a></li>
+          <li><a class="nodec icon-github" href="https://github.com/vnady"></a></li>
+          <li><a class="nodec icon-stackoverflow" href="http://stackoverflow.com/users/5523771/qingchen"></a></li>
+          <li><a class="nodec icon-twitter" href="https://twitter.com/taojiang0101"></a></li>
+          <li><a class="nodec icon-facebook" href="https://www.facebook.com/shawn.henson.125?ref=bookmarks"></a></li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/pandas-du-qu-sqlserver-bing-cun-chu-dao-mongodbread_sqlto_dict.html" title="Permalink to pandas 读取 sqlserver, 并存储到 Mongodb(read_sql,to_dict)">pandas 读取 sqlserver, 并存储到 Mongodb(read_sql,to_dict)</a>
+    </h1>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/pandas-du-qu-sqlserver-bing-cun-chu-dao-mongodbread_sqlto_dict.html" title="2019-06-04T23:17:00+08:00">二 04 六月 2019</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="/category/python.html">python</a>
+      </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/pandas.html">pandas</a>,             <a href="/tag/sqlserver.html">sqlserver</a>,             <a href="/tag/dict.html">dict</a>,             <a href="/tag/mongodb.html">mongodb</a>        </li>
+    </ul>
+    <div class="post-content">
+      <hr>
+<p>问题：要从sqlserver同步数据到mongodb</p>
+<p>开发环境: python==3.6.5, pandas==0.24.2, macOX, pycharm, pymongo==3.7.1</p>
+<h3>读取数据库数据到DataFrame的接口</h3>
+<p><code>pandas.read_sql(sql, con, index_col=None, coerce_float=True, params=None, parse_dates=None, columns=None, chunksize=None)</code></p>
+<ul>
+<li>读取sql查询结果或者数据表到DataFrame</li>
+<li>入参sql:可以是sql查询语句, 也可以是table名字</li>
+<li>入参con:SQL可用连接或者数据库URI字符串(DBAPI2连接也支持,比较少见需特别留意接口描述)</li>
+</ul>
+<h3>读取sqlserver数据库遇到的问题</h3>
+<ol>
+<li>时间格式无法存储到mongodb</li>
+<li>NaN值无法存储到mongodb</li>
+</ol>
+<h4>解决办法分别是:</h4>
+<div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="err">存储到</span><span class="n">mongodb</span><span class="err">之前进行时间格式转换</span><span class="p">(</span><span class="err">更好的方式是在</span><span class="n">read_sql</span><span class="err">入参</span><span class="n">parse_date</span><span class="err">进行处理</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span><span class="err">将</span><span class="n">NaN</span><span class="err">值替换为</span><span class="s1">&#39;&#39;</span><span class="err">空字符串</span>
+
+<span class="err">数据库里有一些列或行全部是</span><span class="n">NaN</span><span class="err">，作者使用了如下两行代码进行</span><span class="n">drop</span><span class="p">:</span>
+<span class="n">DataFrame</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># axis=columns all NaN, drop it</span>
+<span class="n">DataFrame</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># axis=rows all NaN, drop it</span>
+</pre></div>
+
+
+<hr>
+<h3>增量同步</h3>
+<div class="highlight"><pre><span></span><span class="n">DataFrame</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 取末尾1000条数据</span>
+<span class="n">DataFrame_dict</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>  <span class="c1"># 将DataFrame数据转换为dict,为存储到mongodb作准备</span>
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">DataFrame_dict</span><span class="p">:</span>
+    <span class="n">collection</span><span class="o">.</span><span class="n">replace_one</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">it</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]},</span> <span class="n">it</span><span class="p">,</span> <span class="n">upsert</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 遍历1000条记录插入mongodb, upsert=True是在有相同记录的时候进行替换(避免生成重复记录)</span>
+</pre></div>
+
+
+<p><strong><em>如果有一些统计工作需要完成，那么请探索下 DataFrame，可能会让你事半功倍。</em></strong></p>
+    </div>
+  </div>
+  <hr class="separator">
+  <div class="col-md-8 col-md-offset-2">
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      jiangtao, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="/theme/js/jquery.min.js"></script>
+  <script src="/theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>
